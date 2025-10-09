@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dedwgcnrjc1xl"]
+
+[ext_resource type="Script" uid="uid://cjbcona8po87k" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Connection.gd" id="1_74qjd"]
+
+[node name="Node Connection" type="Line2D"]
+z_index = -100
+z_as_relative = false
+width = 2.0
+script = ExtResource("1_74qjd")

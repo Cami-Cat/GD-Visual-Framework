@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://da3saef2dcpw2"]
+
+[ext_resource type="Script" uid="uid://d0fr632latnuk" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Output.gd" id="1_lbtjg"]
+[ext_resource type="StyleBox" uid="uid://bj5woumua6yd3" path="res://addons/visual_framework/Assets/Themes/Visuals/TNode_Output_Hover.tres" id="2_d33gw"]
+[ext_resource type="Script" uid="uid://cn7imc7bynxb1" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Output_Circle.gd" id="3_c5py2"]
+[ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="4_33n5n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjstk"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hidjc"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[node name="Output" type="Control" node_paths=PackedStringArray("output_circle")]
+z_as_relative = false
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1136.0
+offset_bottom = -632.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+script = ExtResource("1_lbtjg")
+output_circle = NodePath("Output Circle")
+
+[node name="Output Circle" type="RichTextLabel" parent="." node_paths=PackedStringArray("output")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mjstk")
+theme_override_styles/background = ExtResource("2_d33gw")
+script = ExtResource("3_c5py2")
+output = NodePath("..")
+
+[node name="Node Type" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -247.0
+offset_top = -16.5
+offset_right = -24.0
+offset_bottom = 16.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("4_33n5n")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hidjc")
+theme_override_styles/background = SubResource("StyleBoxEmpty_hidjc")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_hidjc")
+text = "Output Type"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Output Circle" to="." method="_on_output_circle_mouse_entered"]
+[connection signal="mouse_entered" from="Output Circle" to="Output Circle" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Output Circle" to="." method="_on_output_circle_mouse_exited"]
+[connection signal="mouse_exited" from="Output Circle" to="Output Circle" method="_on_mouse_exited"]

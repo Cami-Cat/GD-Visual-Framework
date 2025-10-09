@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfc170gva71d0"]
+
+[ext_resource type="Script" uid="uid://csgo0dou23gi7" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd" id="1_2ed84"]
+[ext_resource type="Shader" uid="uid://b2ulsvyer8lqg" path="res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader" id="2_0aavy"]
+[ext_resource type="Script" uid="uid://cetm6xcw5hyeg" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd" id="3_3u128"]
+[ext_resource type="Script" uid="uid://ddv5jqm0vid3i" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd" id="4_4inbe"]
+[ext_resource type="PackedScene" uid="uid://dt50yts386dv4" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn" id="5_jx55a"]
+[ext_resource type="PackedScene" uid="uid://cg80bqiec73dj" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn" id="6_0aavy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kgpe"]
+shader = ExtResource("2_0aavy")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.05197101, 0.051970944, 0.05197095, 1)
+shader_parameter/dot_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+shader_parameter/resolution = Vector2(5000, 5000)
+shader_parameter/offset = Vector2(0, 33.78)
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+
+[node name="Visual Editor Main" type="Control" node_paths=PackedStringArray("grid", "visual_node_master")]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_2ed84")
+grid = NodePath("Background_Grid")
+zoom_step = 0.1
+visual_node_master = NodePath("Background_Grid/Visual_Node_Master")
+
+[node name="Background_Grid" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2kgpe")
+layout_mode = 1
+offset_right = 10000.0
+offset_bottom = 5000.0
+script = ExtResource("3_3u128")
+
+[node name="Visual_Node_Master" type="Control" parent="Background_Grid"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("4_4inbe")
+
+[node name="Visual_Node" parent="Background_Grid/Visual_Node_Master" instance=ExtResource("5_jx55a")]
+layout_mode = 1
+
+[node name="Visual_Node2" parent="Background_Grid/Visual_Node_Master" instance=ExtResource("5_jx55a")]
+layout_mode = 1
+
+[node name="Visual_Node3" parent="Background_Grid/Visual_Node_Master" instance=ExtResource("5_jx55a")]
+layout_mode = 1
+offset_bottom = 243.91
+node_size = Vector2(450, 243.91)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -491.0
+offset_top = 15.0
+offset_right = -17.0
+offset_bottom = 55.0
+grow_horizontal = 0
+
+[node name="Button Container" type="HBoxContainer" parent="UI"]
+clip_contents = true
+custom_minimum_size = Vector2(50, 10)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -369.0
+offset_top = -31.5
+offset_bottom = 21.5
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Scale" type="Button" parent="UI/Button Container"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "A"
+text_overrun_behavior = 1
+clip_text = true
+
+[node name="Panning" type="Button" parent="UI/Button Container"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "B"
+text_overrun_behavior = 1
+clip_text = true
+
+[node name="Add Node" type="MenuButton" parent="UI/Button Container"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+"
+flat = false
+
+[node name="Popup Context Menu" parent="UI" instance=ExtResource("6_0aavy")]
+visible = false
+z_index = 4096
+y_sort_enabled = true
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -613.0
+offset_top = -174.0
+offset_right = -413.0
+offset_bottom = 126.0
+grow_horizontal = 1
+grow_vertical = 1
