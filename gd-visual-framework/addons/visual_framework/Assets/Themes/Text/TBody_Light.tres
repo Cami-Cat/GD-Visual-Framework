@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ra68a62oxvi1"]
+
+[ext_resource type="StyleBox" uid="uid://fpt5db5wo45h" path="res://addons/visual_framework/Assets/Themes/Visuals/TButton_Background_Round.tres" id="1_dyura"]
+[ext_resource type="FontFile" uid="uid://b160potll55mi" path="res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf" id="1_je2ni"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hidjc"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[resource]
+default_font = ExtResource("1_je2ni")
+Button/styles/disabled = ExtResource("1_dyura")
+Button/styles/focus = ExtResource("1_dyura")
+Button/styles/hover = ExtResource("1_dyura")
+Button/styles/normal = ExtResource("1_dyura")
+Button/styles/pressed = ExtResource("1_dyura")
+LineEdit/styles/focus = ExtResource("1_dyura")
+LineEdit/styles/normal = ExtResource("1_dyura")
+LineEdit/styles/read_only = ExtResource("1_dyura")
+RichTextLabel/styles/background = SubResource("StyleBoxEmpty_hidjc")
+RichTextLabel/styles/fill = SubResource("StyleBoxEmpty_hidjc")
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_hidjc")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_hidjc")

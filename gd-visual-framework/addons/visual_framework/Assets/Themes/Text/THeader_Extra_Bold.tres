@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://chpavs1bdt7qb"]
+
+[ext_resource type="FontFile" uid="uid://jwa5vd20mp2j" path="res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-ExtraBold.ttf" id="1_xdsej"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xdsej"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[resource]
+default_font = ExtResource("1_xdsej")
+default_font_size = 24
+RichTextLabel/styles/background = SubResource("StyleBoxEmpty_xdsej")
+RichTextLabel/styles/fill = SubResource("StyleBoxEmpty_xdsej")
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_xdsej")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_xdsej")
