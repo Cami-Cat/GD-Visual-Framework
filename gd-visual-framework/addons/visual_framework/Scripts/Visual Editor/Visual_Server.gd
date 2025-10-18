@@ -89,10 +89,10 @@ class Registered_Script:
 	
 	var script_name : StringName = ""
 	var script_type : Script = null
-	var registered_properties : Array[StringName] = []
-	var registered_functions : Dictionary[String, Registered_Method] = {}
+	var registered_properties : Dictionary[StringName, Dictionary] = {}
+	var registered_functions : Dictionary[StringName, Registered_Method] = {}
 
-	func _init(new_script_name : String = "", new_script_type : Script = null) -> void:
+	func _init(new_script_name : StringName = "", new_script_type : Script = null) -> void:
 		script_name = new_script_name
 		script_type = new_script_type
 		return
@@ -112,7 +112,7 @@ class Registered_Script:
 	func register_property(property_name : StringName) -> void:
 		if !does_property_exist(property_name): return
 		if is_property_registered(property_name) :
-			registered_properties.append(property_name)
+			registered_properties[property_name] = {}
 		return
 
 	## If the property exists within this script, removes it from the registry. It cannot then be accessed in the visual editor.
@@ -162,32 +162,41 @@ class Registered_Script:
 class Registered_Method:
 	
 	var method_name : StringName = ""
-	var method_arguments : Dictionary[StringName, StringName] = {}
-	var method_return : Variant = null
+	var method_arguments : Dictionary[StringName, Dictionary] = {}
+	var method_return : Dictionary[StringName, Dictionary] = {}
 
 	func _init(in_script : Script = null, new_method_name : StringName = "") -> void:
 		## Store the method's name.
 		method_name = new_method_name
 		## Construct an empty array for all of the potential arguments.
-		var args : Array[Dictionary]
 		for method in in_script.get_script_method_list():
 			## With every user-defined method, check against it's name. If it matches, grab the arguments list.
 			if method["name"] == new_method_name:
-				args = method["args"]
-		for arg in args:
-			## For every argument within the argument list, set the "class" to it's class_name
-			var arg_class = arg["class_name"]
-			## If it does not have a custom global class, store it's type. (Types stored in this dictionary are integers (enum), if you wish to read the human-readable type, call type_string())
-			if arg_class == "":
-				arg_class = int(arg["type"])
-			## Store the arguments for the method with the argument name and class. 
-			## TODO : Potentially add its Initial Values as-well to prevent errors.
-			method_arguments[arg["name"]] = arg_class
+				define_method_return(method)
+				define_method_arguments(method["args"])
 		return
 
-	#func get_method_arguments() -> Array[Variant]:
-		#
-		#return method_arguments
+	func define_method_return(method : Dictionary) -> void:
+		if method["return"] != null:
+			## 0 refers to Nil or Void, you do not need to care about Nil returns.
+			if method["return"]["type"] == 0 : return
+			var _return = method["return"]
+			## TODO : Change the method if it's a dictionary or class as aggregate? Give them an option?
+			## Store important information such as the class_name of the return (will change the name of the output pin) and the type (incase it has no global class)
+			var return_dict : Dictionary[String, Variant] = {
+				"class_name" : _return["class_name"],
+				"type" : int(_return["type"]),	
+			}
+			## Then set the type_string of the type (could be object, or int, or string) and store the dictionary.
+			method_return[type_string(int(_return["type"]))] = return_dict
+			print(method_return)
+		return
 	
-	func get_method_return() -> Variant:
-		return method_return
+	func define_method_arguments(argument_list : Array[Dictionary]) -> void:
+		for arg in argument_list:
+			## Store it's type and global class (if it has one) within a dictionary
+			var arg_dict : Dictionary[String, Variant] = {
+				"class_name" : arg["class_name"],
+				"type" : int(arg["type"])
+			}
+			method_arguments[arg["name"]] = arg_dict
