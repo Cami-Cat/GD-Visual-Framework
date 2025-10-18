@@ -4,12 +4,10 @@ extends Control
 var timer : Timer = Timer.new()
 
 func _ready() -> void:
-	VisualServer.register_script("me", me)
-	var script = VisualServer.get_registered_script("me")
-	script.register_method("does_method_exist")
-	var method = script.get_method("does_method_exist")
-	print(method.method_arguments)
-	
+	var script = VisualServer.register_script("me", me)
+	var method = script.register_method("does_method_exist")
+	print("%s(%s) -> %s:" % [method.method_name, method.method_arguments.keys(), method.method_return.keys()])
+
 func does_method_exist(in_script : Script = null, method_name : StringName = &"") -> bool:
 	if in_script == null:
 		print("Cannot find whether the method: %s exists in a null script: %s" % [method_name, in_script.get_global_name()])

@@ -26,12 +26,12 @@ func call_breakpoint() -> void:
 ## Register a script within the Visual Server. Allows access to it and it's then registered Properties and Methods within the Visual Grid, following whatever implementation of the tool
 ## you decide to use. This will create an object of type [member Registered_Script][br]you can access this object with [method get_registered_script] and then use the methods within
 ## the [member Registered_Script] subclass.
-func register_script(script_name : StringName = "", script : Script = null) -> void:
+func register_script(script_name : StringName = "", script : Script = null) -> Registered_Script:
 	if !script:
 		print("Cannot register a script with no given script argument. Called method should look like such: \
 			 register_script(\"this_script\", this_script)")
 		breakpoint
-		return
+		return null
 	if !script_name:
 		print("No name given to register script, giving it the same name as it's global_name")
 		if script.resource_name:
@@ -40,11 +40,11 @@ func register_script(script_name : StringName = "", script : Script = null) -> v
 			script_name = script.get_global_name()
 	if is_script_registered(script_name, script) : 
 		print("The script: %s is already a registered script, returning" % [script_name])
-		return
+		return null
 	
 	var registry : Registered_Script = Registered_Script.new(script_name, script)
 	registered_scripts[script_name] = registry
-	return
+	return registered_scripts[script_name]
 
 ## Return a registered script with either the name or script_type. This is the object that you can register properties to and methods (functions) to.
 func get_registered_script(script_name : StringName = "", script : Script = null) -> Registered_Script:
@@ -150,14 +150,14 @@ class Registered_Script:
 			return null
 		return registered_functions[method_name]
 
-	func register_method(method_name : StringName = &"") -> void:
+	func register_method(method_name : StringName = &"") -> Registered_Method:
 		if !does_method_exist(method_name):
 			return
 		if registered_functions.has(method_name):
 			print("This method is already registered within this class.")
 			return
 		registered_functions[method_name] = Registered_Method.new(script_type, method_name)
-		return
+		return registered_functions[method_name]
 
 class Registered_Method:
 	
@@ -189,7 +189,6 @@ class Registered_Method:
 			}
 			## Then set the type_string of the type (could be object, or int, or string) and store the dictionary.
 			method_return[type_string(int(_return["type"]))] = return_dict
-			print(method_return)
 		return
 	
 	func define_method_arguments(argument_list : Array[Dictionary]) -> void:
