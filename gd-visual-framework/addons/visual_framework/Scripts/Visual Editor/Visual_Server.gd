@@ -77,7 +77,6 @@ func is_script_registered(script_name : StringName = "", script : Script = null)
 			if registry:
 				if script == registry.script_type:
 					return true
-	print("Script with name: %s and script: %s is not registered." % [script_name, script])
 	return false
 
 func create_visual_node_script(registered_script : Registered_Script) -> Visual_Node:
@@ -91,7 +90,7 @@ class Registered_Script:
 	var script_name : StringName = ""
 	var script_type : Script = null
 	var registered_properties : Array[StringName] = []
-	var registered_functions : Array[Registered_Method] = []
+	var registered_functions : Dictionary[String, Registered_Method] = {}
 
 	func _init(new_script_name : String = "", new_script_type : Script = null) -> void:
 		script_name = new_script_name
@@ -108,6 +107,13 @@ class Registered_Script:
 			elif script_type != null:
 				script_name = script_type.get_global_name()
 		return script_name
+
+	## Register a property within this script, allows it to be accessed ([method set] & [method get]) within the visual editor.
+	func register_property(property_name : StringName) -> void:
+		if !does_property_exist(property_name): return
+		if is_property_registered(property_name) :
+			registered_properties.append(property_name)
+		return
 
 	## If the property exists within this script, removes it from the registry. It cannot then be accessed in the visual editor.
 	func remove_registered_property(property_name : StringName) -> void:
@@ -128,21 +134,60 @@ class Registered_Script:
 			return false
 		return true
 	
-	## Register a property within this script, allows it to be accessed ([method set] & [method get]) within the visual editor.
-	func register_property(property_name : StringName) -> void:
-		if !does_property_exist(property_name): return
-		if is_property_registered(property_name) :
-			registered_properties.append(property_name)
+	func does_method_exist(method_name : StringName = &"") -> bool:
+		if script_type == null:
+			print("Cannot find whether the method: %s exists in a null script: %s" % [method_name, _get_script_name()])
+			return false
+		for method in script_type.get_script_method_list():
+			if method["name"] == method_name:
+				return true
+		return false
+
+	func get_method(method_name : StringName = &"") -> Registered_Method:
+		if !does_method_exist(method_name):
+			return null 
+		if !registered_functions.has(method_name):
+			return null
+		return registered_functions[method_name]
+
+	func register_method(method_name : StringName = &"") -> void:
+		if !does_method_exist(method_name):
+			return
+		if registered_functions.has(method_name):
+			print("This method is already registered within this class.")
+			return
+		registered_functions[method_name] = Registered_Method.new(script_type, method_name)
 		return
 
 class Registered_Method:
 	
 	var method_name : StringName = ""
-	var method_arguments : Array = []
+	var method_arguments : Dictionary[StringName, StringName] = {}
 	var method_return : Variant = null
 
-	func get_method_arguments() -> Array[Variant]:
-		return method_arguments
+	func _init(in_script : Script = null, new_method_name : StringName = "") -> void:
+		## Store the method's name.
+		method_name = new_method_name
+		## Construct an empty array for all of the potential arguments.
+		var args : Array[Dictionary]
+		for method in in_script.get_script_method_list():
+			## With every user-defined method, check against it's name. If it matches, grab the arguments list.
+			if method["name"] == new_method_name:
+				args = method["args"]
+		for arg in args:
+			## For every argument within the argument list, set the "class" to it's class_name
+			var arg_class = arg["class_name"]
+			## If it does not have a custom global class, store it's type. (Types stored in this dictionary are integers (enum), if you wish to read the human-readable type, call type_string())
+			if arg_class == "":
+				arg_class = int(arg["type"])
+			## Store the arguments for the method with the argument name and class. 
+			## TODO : Potentially add its Initial Values as-well to prevent errors.
+			method_arguments[arg["name"]] = arg_class
+		return
+
+	#func get_method_arguments() -> Array[Variant]:
+		#
+		#return method_arguments
 	
 	func get_method_return() -> Variant:
 		return method_return
