@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	if !is_dragging || line == null : return
 	## Alter the positioning of the end point (total number of points - 1 to get the final point in the array) by (dividing by) the size of the zoom in order to 
 	## get an accurate end point.
-	line._set_to_position((line.get_point_count() - 1), ((get_viewport().get_mouse_position() + line.dragging_offset) / VEditor.v_editor_zoom))
+	line._set_to_position((line.get_point_count() - 1), ((get_viewport().get_mouse_position() + line.dragging_offset) / VisualServer.v_editor_zoom))
 	return
 
 func _input(event: InputEvent) -> void:

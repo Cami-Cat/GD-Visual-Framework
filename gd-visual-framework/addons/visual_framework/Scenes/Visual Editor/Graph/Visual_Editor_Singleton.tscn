@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://2kq0k2354sqk"]
 
-[ext_resource type="Script" uid="uid://bltjgb38rd3rf" path="res://addons/visual_framework/Scripts/Visual_Editor_Singleton.gd" id="1_q1ynl"]
+[ext_resource type="Script" uid="uid://bltjgb38rd3rf" path="res://addons/visual_framework/Scripts/Visual Editor/Visual_Server.gd" id="1_q1ynl"]
+
 
 [node name="VEditor" type="Node"]
 script = ExtResource("1_q1ynl")

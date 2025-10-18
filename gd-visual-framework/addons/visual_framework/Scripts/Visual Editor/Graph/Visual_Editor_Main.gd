@@ -29,6 +29,6 @@ func _gui_input(event: InputEvent) -> void:
 ## If [member amount] is [member 1], scale will remain the same.
 func _zoom(amount : float = 0.0) -> void:
 	var new_zoom = clamp(grid.scale * Vector2(amount, amount), Vector2(MIN_ZOOM, MIN_ZOOM), Vector2(MAX_ZOOM, MAX_ZOOM))
-	VEditor.v_editor_zoom = new_zoom
+	VisualServer.v_editor_zoom = new_zoom
 	grid.resize(new_zoom)
 	return
