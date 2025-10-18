@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1760795984
+::res://::1760815920
 icon.svg::CompressedTexture2D::3301990405433983114::1760795853::1760795927::1::::<><><>0<>0<>af63eb8d32ed41a12ea856c5ade271aa<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://addons/::1760795852
 ::res://addons/visual_framework/::1760795853
@@ -53,11 +53,11 @@ TNode_Output_Hover.tres::StyleBoxFlat::3081413453927327194::1760795852::0::1::::
 TNode_Output_Normal.tres::StyleBoxFlat::1856816576478468772::1760795852::0::1::::<><><>0<>0<><>::
 ::res://addons/visual_framework/Scenes/::1760795852
 ::res://addons/visual_framework/Scenes/Visual Editor/::1760795852
-::res://addons/visual_framework/Scenes/Visual Editor/Graph/::1760795939
+::res://addons/visual_framework/Scenes/Visual Editor/Graph/::1760796049
 Visual_Editor_Main.tscn::PackedScene::5129551451609380231::1760795852::0::1::::<><><>0<>0<><>::uid://csgo0dou23gi7::::res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd<>uid://b2ulsvyer8lqg::::res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader<>uid://cetm6xcw5hyeg::::res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd<>uid://ddv5jqm0vid3i::::res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd<>uid://dt50yts386dv4::::res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn<>uid://cg80bqiec73dj::::res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn
-Visual_Editor_Singleton.tscn::PackedScene::1916759240756021754::1760795939::0::1::::<><><>0<>0<><>::uid://bltjgb38rd3rf::::res://addons/visual_framework/Scripts/Visual Editor/Visual_Editor_Singleton.gd
-::res://addons/visual_framework/Scenes/Visual Editor/Nodes/::1760796028
-Node.tscn::PackedScene::8556343223764236667::1760796028::0::1::::<><><>0<>0<><>::uid://5hla3c7o6a37::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node.gd<>uid://bw2ewh6ocqkc2::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node_Body.gd<>uid://chpavs1bdt7qb::::res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres<>uid://da3saef2dcpw2::::res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node_Output.tscn
+Visual_Editor_Singleton.tscn::PackedScene::1916759240756021754::1760796049::0::1::::<><><>0<>0<><>::uid://bltjgb38rd3rf::::res://addons/visual_framework/Scripts/Visual Editor/Visual_Server.gd
+::res://addons/visual_framework/Scenes/Visual Editor/Nodes/::1760797875
+Node.tscn::PackedScene::8556343223764236667::1760797875::0::1::::<><><>0<>0<><>::uid://5hla3c7o6a37::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node.gd<>uid://bw2ewh6ocqkc2::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node_Body.gd<>uid://chpavs1bdt7qb::::res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres<>uid://da3saef2dcpw2::::res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node_Output.tscn
 Node_Connection.tscn::PackedScene::7447557173411600001::1760795852::0::1::::<><><>0<>0<><>::uid://cjbcona8po87k::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Connection.gd
 Node_Output.tscn::PackedScene::7218157753111058083::1760795852::0::1::::<><><>0<>0<><>::uid://d0fr632latnuk::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Output.gd<>uid://bj5woumua6yd3::::res://addons/visual_framework/Assets/Themes/Visuals/TNode_Output_Hover.tres<>uid://cn7imc7bynxb1::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Output_Circle.gd<>uid://ra68a62oxvi1::::res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres
 ::res://addons/visual_framework/Scenes/Visual Editor/UI/::1760795852
@@ -67,8 +67,8 @@ UISearch_Bar.gd::GDScript::283738017131353617::1760795852::0::1::::Search_Bar<>L
 ::res://addons/visual_framework/Scripts/::1760795939
 ::res://addons/visual_framework/Scripts/Shaders/::1760795973
 Background_Grid.gdshader::Shader::4323508188483318890::1760795973::0::1::::<><><>0<>0<><>::
-::res://addons/visual_framework/Scripts/Visual Editor/::1760795953
-Visual_Editor_Singleton.gd::GDScript::3198278406037031935::1760795953::0::1::::<>Node<><>0<>1<><>::
+::res://addons/visual_framework/Scripts/Visual Editor/::1760797471
+Visual_Server.gd::GDScript::3198278406037031935::1760797471::0::1::::<>Node<><>0<>1<><>::
 ::res://addons/visual_framework/Scripts/Visual Editor/Graph/::1760796026
 Background_Grid.gd::GDScript::5093605094956351302::1760795852::0::1::::Background_Grid<>ColorRect<><>0<>1<><>::
 Visual_Editor_Main.gd::GDScript::6049521682284706136::1760796026::0::1::::Visual_Editor<>Control<><>0<>1<><>::
