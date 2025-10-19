@@ -157,6 +157,7 @@ class Registered_Script:
 		for method in script_type.get_script_method_list():
 			if method["name"] == method_name:
 				return true
+		print("Method: %s does not exist in script: %s" % [method_name, _get_script_name()])
 		return false
 
 	func get_method(method_name : StringName = &"") -> Registered_Method:
@@ -177,10 +178,14 @@ class Registered_Script:
 
 	## Only call this if you wish to register a function return as a "tuple" so that you may return multiple values within the visual framework.
 	func register_method_tuple_as_dict(method_name : StringName = &"", return_arguments : Array[Dictionary] = []) -> void:
+		if !does_method_exist(method_name):
+			return
 		get_method(method_name).method_return = return_arguments
 		return
 
 	func register_method_tuple(method_name : StringName = &"", return_arguments : Array[Variant] = []) -> void:
+		if !does_method_exist(method_name):
+			return
 		var return_dictionary : Array[Dictionary]
 		for argument in return_arguments:
 			return_dictionary.append(argument)
