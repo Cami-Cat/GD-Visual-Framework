@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" uid="uid://bltjgb38rd3rf" path="res://addons/visual_framework/Scripts/Visual Editor/Visual_Server.gd" id="1_q1ynl"]
 
-
 [node name="VEditor" type="Node"]
 script = ExtResource("1_q1ynl")

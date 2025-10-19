@@ -85,6 +85,22 @@ func create_visual_node_script(registered_script : Registered_Script) -> Visual_
 func create_visual_node_function(registered_function : Registered_Method) -> Visual_Node:
 	return null
 
+func create_property_dict(property_name : StringName = "", property_type : Variant = null, property_class_name : String = "") -> Dictionary:
+	var property_dict : Dictionary = {}
+	if typeof(property_type) == TYPE_OBJECT:
+		property_dict = {
+			"name" : property_name,
+			"type" : typeof(property_type),
+			"class_name" : property_class_name,
+		}
+		return property_dict
+	property_dict = {
+		"name" : property_name,
+		"type" : property_type,
+		"type_string" : type_string(property_type)
+	}
+	return property_dict
+
 class Registered_Script:
 	
 	var script_name : StringName = ""
@@ -159,11 +175,23 @@ class Registered_Script:
 		registered_functions[method_name] = Registered_Method.new(script_type, method_name)
 		return registered_functions[method_name]
 
+	## Only call this if you wish to register a function return as a "tuple" so that you may return multiple values within the visual framework.
+	func register_method_tuple_as_dict(method_name : StringName = &"", return_arguments : Array[Dictionary] = []) -> void:
+		get_method(method_name).method_return = return_arguments
+		return
+
+	func register_method_tuple(method_name : StringName = &"", return_arguments : Array[Variant] = []) -> void:
+		var return_dictionary : Array[Dictionary]
+		for argument in return_arguments:
+			return_dictionary.append(argument)
+		get_method(method_name).method_return = return_dictionary
+		return
+
 class Registered_Method:
 	
 	var method_name : StringName = ""
 	var method_arguments : Dictionary[StringName, Dictionary] = {}
-	var method_return : Dictionary[StringName, Dictionary] = {}
+	var method_return : Array[Dictionary] = []
 
 	func _init(in_script : Script = null, new_method_name : StringName = "") -> void:
 		## Store the method's name.
@@ -172,26 +200,30 @@ class Registered_Method:
 		for method in in_script.get_script_method_list():
 			## With every user-defined method, check against it's name. If it matches, grab the arguments list.
 			if method["name"] == new_method_name:
-				define_method_return(method)
-				define_method_arguments(method["args"])
+				_define_method_return(method)
+				_define_method_arguments(method["args"])
 		return
-
-	func define_method_return(method : Dictionary) -> void:
+	
+	## Depreciated : only works on functions that return a single value. Please use [method register_method_return] to return multiple values or just a single one.
+	func _define_method_return(method : Dictionary) -> void:
 		if method["return"] != null:
 			## 0 refers to Nil or Void, you do not need to care about Nil returns.
-			if method["return"]["type"] == 0 : return
+			if method["return"]["type"] == TYPE_NIL : 
+				return
 			var _return = method["return"]
-			## TODO : Change the method if it's a dictionary or class as aggregate? Give them an option?
+			var return_name = type_string(int(_return["type"]))
+			## TODO : Change the method if it's a dictionary?
 			## Store important information such as the class_name of the return (will change the name of the output pin) and the type (incase it has no global class)
 			var return_dict : Dictionary[String, Variant] = {
+				"name" : return_name,
 				"class_name" : _return["class_name"],
 				"type" : int(_return["type"]),	
 			}
 			## Then set the type_string of the type (could be object, or int, or string) and store the dictionary.
-			method_return[type_string(int(_return["type"]))] = return_dict
+			method_return.append(return_dict)
 		return
 	
-	func define_method_arguments(argument_list : Array[Dictionary]) -> void:
+	func _define_method_arguments(argument_list : Array[Dictionary]) -> void:
 		for arg in argument_list:
 			## Store it's type and global class (if it has one) within a dictionary
 			var arg_dict : Dictionary[String, Variant] = {
