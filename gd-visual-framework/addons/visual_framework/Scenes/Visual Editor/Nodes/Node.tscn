@@ -1,11 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt50yts386dv4"]
+[gd_scene load_steps=4 format=3 uid="uid://dt50yts386dv4"]
 
 [ext_resource type="Script" uid="uid://5hla3c7o6a37" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node.gd" id="1_fexpj"]
 [ext_resource type="Script" uid="uid://bw2ewh6ocqkc2" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node_Body.gd" id="2_884qf"]
 [ext_resource type="Theme" uid="uid://chpavs1bdt7qb" path="res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres" id="3_ffjnk"]
-[ext_resource type="PackedScene" uid="uid://da3saef2dcpw2" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node_Output.tscn" id="4_o56bp"]
 
-[node name="Visual_Node" type="Control" node_paths=PackedStringArray("node_name_reference", "node_header_reference", "node_body_reference")]
+[node name="Visual_Node" type="Control" node_paths=PackedStringArray("node_name_reference", "node_header_reference", "node_body_reference", "outputs")]
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
@@ -21,6 +20,7 @@ node_header_reference = NodePath("Header")
 header_colour = Color(0.8081462, 0.3447109, 0.38969603, 1)
 node_body_reference = NodePath("Body")
 body_colour = Color(0.0062734825, 0.031865284, 0.07004044, 1)
+outputs = NodePath("Body/Outputs")
 
 [node name="Header" type="ColorRect" parent="."]
 z_index = 1
@@ -72,15 +72,6 @@ offset_bottom = 48.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 24
-
-[node name="Output" parent="Body/Outputs" instance=ExtResource("4_o56bp")]
-layout_mode = 2
-
-[node name="Output2" parent="Body/Outputs" instance=ExtResource("4_o56bp")]
-layout_mode = 2
-
-[node name="Output3" parent="Body/Outputs" instance=ExtResource("4_o56bp")]
-layout_mode = 2
 
 [connection signal="mouse_entered" from="Body" to="Body" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Body" to="Body" method="_on_mouse_exited"]

@@ -12,6 +12,9 @@ extends Control
 const MAX_ZOOM : float = 5
 const MIN_ZOOM : float = 0.2
 
+func _init() -> void:
+	VisualServer.visual_grid = self
+
 func _gui_input(event: InputEvent) -> void:
 	## Handle Zoom inputs
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_WHEEL_DOWN):
@@ -21,6 +24,13 @@ func _gui_input(event: InputEvent) -> void:
 		_zoom(1 + zoom_step)
 		return
 	return
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_accept") && Input.is_action_pressed("ui_cancel"):
+		var registered_script = VisualServer.get_registered_script("me")
+		var registered_method = registered_script.get_method("does_method_exist")
+		VisualServer.create_function_visual_node(registered_method)
+		return
 
 ## Increase or decrease the scale of the grid, increasing or decreasing the size of all of the children it has. Amount affects how much it is scaled by, for reference:
 ## [codeblock]

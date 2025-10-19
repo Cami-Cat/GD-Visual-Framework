@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfc170gva71d0"]
+[gd_scene load_steps=7 format=3 uid="uid://cfc170gva71d0"]
 
 [ext_resource type="Script" uid="uid://csgo0dou23gi7" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd" id="1_2ed84"]
 [ext_resource type="Shader" uid="uid://b2ulsvyer8lqg" path="res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader" id="2_0aavy"]
 [ext_resource type="Script" uid="uid://cetm6xcw5hyeg" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd" id="3_3u128"]
 [ext_resource type="Script" uid="uid://ddv5jqm0vid3i" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd" id="4_4inbe"]
-[ext_resource type="PackedScene" uid="uid://dt50yts386dv4" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn" id="5_jx55a"]
 [ext_resource type="PackedScene" uid="uid://cg80bqiec73dj" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn" id="6_0aavy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2kgpe"]
@@ -46,17 +45,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("4_4inbe")
-
-[node name="Visual_Node" parent="Background_Grid/Visual_Node_Master" instance=ExtResource("5_jx55a")]
-layout_mode = 1
-
-[node name="Visual_Node2" parent="Background_Grid/Visual_Node_Master" instance=ExtResource("5_jx55a")]
-layout_mode = 1
-
-[node name="Visual_Node3" parent="Background_Grid/Visual_Node_Master" instance=ExtResource("5_jx55a")]
-layout_mode = 1
-offset_bottom = 243.91
-node_size = Vector2(450, 243.91)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
@@ -109,16 +97,10 @@ text = "+"
 flat = false
 
 [node name="Popup Context Menu" parent="UI" instance=ExtResource("6_0aavy")]
-visible = false
 z_index = 4096
 y_sort_enabled = true
 layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_left = -613.0
-offset_top = -174.0
-offset_right = -413.0
-offset_bottom = 126.0
+offset_right = -333.0
 grow_horizontal = 1
 grow_vertical = 1

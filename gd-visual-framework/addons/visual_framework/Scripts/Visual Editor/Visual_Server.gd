@@ -2,6 +2,7 @@
 extends Node
 
 var v_editor_zoom : Vector2 = Vector2.ONE
+var visual_grid : Visual_Editor
 
 ## Set the connection type of any pins to Output, Input or Both. Allows you to create multi-directional connections or one-way directions.
 enum CONNECTION_TYPE {OUTPUT, INPUT, OUTPUT_INPUT}
@@ -18,7 +19,8 @@ var registered_scripts : Dictionary[String, Registered_Script]
 func _get_registered_scripts() -> Dictionary[String, Registered_Script]:
 	return registered_scripts
 
-## Built-in, do not use : If a function call is broken, nodes should call a breakpoint or make their own. This exists as a depreciated way to call for any breaks within code. 
+## Built-in, do not use : If a function call is broken, nodes should call a breakpoint or make their own. 
+## This exists as a depreciated way to call for any breaks within code. 
 func call_breakpoint() -> void:
 	breakpoint
 	return
@@ -78,35 +80,30 @@ func is_script_registered(script_name : StringName = "", script : Script = null)
 				if script == registry.script_type:
 					return true
 	return false
-
-func create_visual_node_script(registered_script : Registered_Script) -> Visual_Node:
+	
+func create_script_visual_node(registered_script : Registered_Script) -> Visual_Node:
+	var visual_node_path : PackedScene = load("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
+	var visual_node : Visual_Node = visual_node_path.instantiate()
+	visual_node.set_node_name(registered_script.script_name)
+	visual_node.set_node_outputs(registered_script.script_type)
+	visual_grid.visual_node_master.add_child(visual_node)
 	return null
 
-func create_visual_node_function(registered_function : Registered_Method) -> Visual_Node:
+func create_function_visual_node(registered_function : Registered_Method) -> Visual_Node:
+	var visual_node_path : PackedScene = load("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
+	var visual_node : Visual_Node = visual_node_path.instantiate()
+	visual_node.set_node_name(registered_function.method_name)
+	visual_node.set_node_outputs(registered_function.method_return, "method", "me:does_method_exist")
+	visual_grid.visual_node_master.add_child(visual_node)
 	return null
 
-func create_property_dict(property_name : StringName = "", property_type : Variant = null, property_class_name : String = "") -> Dictionary:
-	var property_dict : Dictionary = {}
-	if typeof(property_type) == TYPE_OBJECT:
-		property_dict = {
-			"name" : property_name,
-			"type" : typeof(property_type),
-			"class_name" : property_class_name,
-		}
-		return property_dict
-	property_dict = {
-		"name" : property_name,
-		"type" : property_type,
-		"type_string" : type_string(property_type)
-	}
-	return property_dict
 
 class Registered_Script:
 	
 	var script_name : StringName = ""
 	var script_type : Script = null
 	var registered_properties : Dictionary[StringName, Dictionary] = {}
-	var registered_functions : Dictionary[StringName, Registered_Method] = {}
+	var registered_methods : Dictionary[StringName, Registered_Method] = {}
 
 	func _init(new_script_name : StringName = "", new_script_type : Script = null) -> void:
 		script_name = new_script_name
@@ -163,34 +160,18 @@ class Registered_Script:
 	func get_method(method_name : StringName = &"") -> Registered_Method:
 		if !does_method_exist(method_name):
 			return null 
-		if !registered_functions.has(method_name):
+		if !registered_methods.has(method_name):
 			return null
-		return registered_functions[method_name]
+		return registered_methods[method_name]
 
 	func register_method(method_name : StringName = &"") -> Registered_Method:
 		if !does_method_exist(method_name):
 			return
-		if registered_functions.has(method_name):
+		if registered_methods.has(method_name):
 			print("This method is already registered within this class.")
 			return
-		registered_functions[method_name] = Registered_Method.new(script_type, method_name)
-		return registered_functions[method_name]
-
-	## Only call this if you wish to register a function return as a "tuple" so that you may return multiple values within the visual framework.
-	func register_method_tuple_as_dict(method_name : StringName = &"", return_arguments : Array[Dictionary] = []) -> void:
-		if !does_method_exist(method_name):
-			return
-		get_method(method_name).method_return = return_arguments
-		return
-
-	func register_method_tuple(method_name : StringName = &"", return_arguments : Array[Variant] = []) -> void:
-		if !does_method_exist(method_name):
-			return
-		var return_dictionary : Array[Dictionary]
-		for argument in return_arguments:
-			return_dictionary.append(argument)
-		get_method(method_name).method_return = return_dictionary
-		return
+		registered_methods[method_name] = Registered_Method.new(script_type, method_name)
+		return registered_methods[method_name]
 
 class Registered_Method:
 	
@@ -303,3 +284,6 @@ class Registered_Method:
 			}
 			properties[property_name] = property_dict
 			return
+			
+		func get_property_value(property_name : StringName) -> Variant:
+			return properties[property_name]["value"]

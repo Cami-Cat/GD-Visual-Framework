@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1760881107
+::res://::1760891183
 icon.svg::CompressedTexture2D::3301990405433983114::1760795853::1760795927::1::::<><><>0<>0<>af63eb8d32ed41a12ea856c5ade271aa<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://addons/::1760795852
 ::res://addons/visual_framework/::1760795853
@@ -43,9 +43,9 @@ JetBrainsMonoNL-SemiBoldItalic.ttf::FontFile::2423299442635633727::1760795852::1
 JetBrainsMonoNL-Thin.ttf::FontFile::2822295159148904776::1760795852::1760795927::1::::<><><>0<>0<>fded892ea2b9bfd1cd0c8f9316f8d15d<>res://.godot/imported/JetBrainsMonoNL-Thin.ttf-c766250e43287e624e7ff78fab433bde.fontdata::
 JetBrainsMonoNL-ThinItalic.ttf::FontFile::6324829580711032403::1760795852::1760795927::1::::<><><>0<>0<>5db44f555ee332801012f42e3ed1426b<>res://.godot/imported/JetBrainsMonoNL-ThinItalic.ttf-f7b698130e29f6292dbd588f6183c9b5.fontdata::
 ::res://addons/visual_framework/Assets/Themes/::1760795852
-::res://addons/visual_framework/Assets/Themes/Text/::1760830375
-TBody_Light.tres::Theme::1195151548956503094::1760830375::0::1::::<><><>0<>0<><>::uid://fpt5db5wo45h::::res://addons/visual_framework/Assets/Themes/Visuals/TButton_Background_Round.tres<>uid://b160potll55mi::::res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf
-THeader_Extra_Bold.tres::Theme::5295167426470774409::1760830375::0::1::::<><><>0<>0<><>::uid://jwa5vd20mp2j::::res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-ExtraBold.ttf
+::res://addons/visual_framework/Assets/Themes/Text/::1760881238
+TBody_Light.tres::Theme::1195151548956503094::1760881238::0::1::::<><><>0<>0<><>::uid://fpt5db5wo45h::::res://addons/visual_framework/Assets/Themes/Visuals/TButton_Background_Round.tres<>uid://b160potll55mi::::res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf
+THeader_Extra_Bold.tres::Theme::5295167426470774409::1760881238::0::1::::<><><>0<>0<><>::uid://jwa5vd20mp2j::::res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-ExtraBold.ttf
 ::res://addons/visual_framework/Assets/Themes/Visuals/::1760795852
 TButton_Background_Round.tres::StyleBoxFlat::383117241688670023::1760795852::0::1::::<><><>0<>0<><>::
 TNode_Output_Filled.tres::StyleBoxFlat::2952624044247598792::1760795852::0::1::::<><><>0<>0<><>::
@@ -65,10 +65,10 @@ UIPopup_Context_Menu.gd::GDScript::5646259717517642998::1760795852::0::1::::Popu
 UIPopup_Context_Menu.tscn::PackedScene::5263619458629177727::1760795852::0::1::::<><><>0<>0<><>::uid://cmpdcp7g6ameo::::res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.gd<>uid://ra68a62oxvi1::::res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres<>uid://ebpeg8ocqdg0::::res://addons/visual_framework/Scenes/Visual Editor/UI/UISearch_Bar.gd
 UISearch_Bar.gd::GDScript::283738017131353617::1760795852::0::1::::Search_Bar<>LineEdit<><>0<>1<><>::
 ::res://addons/visual_framework/Scripts/::1760795939
-::res://addons/visual_framework/Scripts/Shaders/::1760830375
-Background_Grid.gdshader::Shader::4323508188483318890::1760830375::0::1::::<><><>0<>0<><>::
-::res://addons/visual_framework/Scripts/Visual Editor/::1760833536
-Visual_Server.gd::GDScript::3198278406037031935::1760833536::0::1::::<>Node<><>0<>1<><>::
+::res://addons/visual_framework/Scripts/Shaders/::1760881238
+Background_Grid.gdshader::Shader::4323508188483318890::1760881238::0::1::::<><><>0<>0<><>::
+::res://addons/visual_framework/Scripts/Visual Editor/::1760886847
+Visual_Server.gd::GDScript::3198278406037031935::1760886847::0::1::::<>Node<><>0<>1<><>::
 ::res://addons/visual_framework/Scripts/Visual Editor/Graph/::1760796026
 Background_Grid.gd::GDScript::5093605094956351302::1760795852::0::1::::Background_Grid<>ColorRect<><>0<>1<><>::
 Visual_Editor_Main.gd::GDScript::6049521682284706136::1760796026::0::1::::Visual_Editor<>Control<><>0<>1<><>::
@@ -79,6 +79,6 @@ Node_Output.gd::GDScript::8925394092152568734::1760796026::0::1::::Node_Output<>
 Node_Output_Circle.gd::GDScript::5751863742838013088::1760795852::0::1::::<>RichTextLabel<><>0<>1<><>::
 Visual_Node.gd::GDScript::2120785315557095600::1760795853::0::1::::Visual_Node<>Control<><>0<>1<><>::
 Visual_Node_Body.gd::GDScript::3986596014718198055::1760795853::0::1::::<>ColorRect<><>0<>1<><>::
-::res://Examples/::1760834017
-test_scene.gd::GDScript::2150808702135668910::1760834017::0::1::::me<>Control<><>0<>0<><>::
-test_scene.tscn::PackedScene::9011901847195925757::1760833579::0::1::::<><><>0<>0<><>::uid://5v4rf47cdyvm::::res://Examples/test_scene.gd
+::res://Examples/::1760888067
+test_scene.gd::GDScript::2150808702135668910::1760887176::0::1::::me<>Control<><>0<>0<><>::
+test_scene.tscn::PackedScene::9011901847195925757::1760888067::0::1::::<><><>0<>0<><>::uid://5v4rf47cdyvm::::res://Examples/test_scene.gd

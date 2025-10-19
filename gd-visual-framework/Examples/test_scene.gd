@@ -1,3 +1,4 @@
+@tool
 class_name me
 extends Control
 
@@ -10,7 +11,8 @@ static func _static_init() -> void:
 	
 	method.set_tuple_return(method.create_tuple(({"attached_to_script" : me, "does_exist" : TYPE_BOOL})))
 	
-	print(method.method_return.properties)
+	print("%s(%s) -> [%s]" % [method.method_name, method.method_arguments.keys(), method.method_return.properties.keys()])
+	return
 
 func does_method_exist(in_script : Script = null, method_name : StringName = &"") -> Dictionary[String, me]:
 	if in_script == null:

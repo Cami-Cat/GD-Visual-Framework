@@ -4,15 +4,18 @@ extends Control
 
 signal line_dropped()
 
-@export var output_type : GDScript
 @export var output_circle : RichTextLabel
+@export var output_text : RichTextLabel
 
+var output_type
 var connections : Array[Node]
-
 var lines : Array[Node_Connection]
 var line : Node_Connection
 var can_click : bool = false
 var is_dragging : bool = false
+
+func _init(_output_type : Variant = null) -> void:
+	output_type = _output_type
 
 func _process(delta: float) -> void:
 	if !is_dragging || line == null : return
@@ -58,4 +61,8 @@ func _on_output_circle_mouse_entered() -> void:
 
 func _on_output_circle_mouse_exited() -> void:
 	can_click = false
+	return
+
+func set_output_text(to : String) -> void:
+	output_text.text = to
 	return
