@@ -19,12 +19,6 @@ var registered_scripts : Dictionary[String, Registered_Script]
 func _get_registered_scripts() -> Dictionary[String, Registered_Script]:
 	return registered_scripts
 
-## Built-in, do not use : If a function call is broken, nodes should call a breakpoint or make their own. 
-## This exists as a depreciated way to call for any breaks within code. 
-func call_breakpoint() -> void:
-	breakpoint
-	return
-
 ## Register a script within the Visual Server. Allows access to it and it's then registered Properties and Methods within the Visual Grid, following whatever implementation of the tool
 ## you decide to use. This will create an object of type [member Registered_Script][br]you can access this object with [method get_registered_script] and then use the methods within
 ## the [member Registered_Script] subclass.
@@ -218,6 +212,11 @@ class Registered_Method:
 			}
 			method_arguments[arg["name"]] = arg_dict
 
+	func create_tuple_from_tuple(from_tuple : Tuple) -> Tuple:
+		var tuple = Tuple.new()
+		tuple.properties = from_tuple.properties
+		return tuple
+
 	func create_tuple(in_dictionary : Dictionary[String, Variant]) -> Tuple:
 		var tuple = Tuple.new(in_dictionary)
 		return tuple
@@ -225,6 +224,11 @@ class Registered_Method:
 	func set_tuple_return(to_tuple : Tuple) -> void:
 		method_return = to_tuple
 		return
+
+	func get_tuple_return() -> Tuple:
+		if method_return is Tuple:
+			return method_return
+		return null
 
 	class Tuple:
 		
@@ -284,6 +288,6 @@ class Registered_Method:
 			}
 			properties[property_name] = property_dict
 			return
-			
+		
 		func get_property_value(property_name : StringName) -> Variant:
 			return properties[property_name]["value"]

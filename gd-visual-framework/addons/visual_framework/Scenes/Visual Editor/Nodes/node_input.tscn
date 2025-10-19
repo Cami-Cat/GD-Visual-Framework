@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://c14fb7aukh82k"]
+
+[ext_resource type="Script" uid="uid://cv27ya3j4kync" path="res://Node_Connection.gd" id="1_dsyol"]
+[ext_resource type="StyleBox" uid="uid://bj5woumua6yd3" path="res://addons/visual_framework/Assets/Themes/Visuals/TNode_Output_Hover.tres" id="2_xpw8o"]
+[ext_resource type="Script" uid="uid://cn7imc7bynxb1" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Output_Circle.gd" id="3_u0tik"]
+[ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="4_wlv44"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4skc7"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hqmve"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[node name="Node Connection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dsyol")
+
+[node name="Output Circle" type="RichTextLabel" parent="." node_paths=PackedStringArray("output")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_4skc7")
+theme_override_styles/background = ExtResource("2_xpw8o")
+script = ExtResource("3_u0tik")
+output = NodePath("")
+
+[node name="Node Type" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -247.0
+offset_top = -16.5
+offset_right = -24.0
+offset_bottom = 16.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("4_wlv44")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hqmve")
+theme_override_styles/background = SubResource("StyleBoxEmpty_hqmve")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_hqmve")
+text = "Output Type"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Output Circle" to="Output Circle" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Output Circle" to="Output Circle" method="_on_mouse_exited"]
