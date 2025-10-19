@@ -271,15 +271,15 @@ class Registered_Method:
 			return
 		
 		func store_class(property_name : StringName, property_type : Object) -> void:
-			var property_class_name : StringName
+			var property_class_name : StringName = "Object"
 			if property_type.get_class() == "GDScriptNativeClass":
-				## If you're using a builtin abstract type or a builtin-type with no instantiation You are likely to get errors here.
+				## If you're using a builtin abstract type or a builtin-type with no instantiation You are likely to get errors here. (see Script, FileAccess, DirAccess),
+				## They are still stored correctly, but they are not accessible by class_name.
 				## This is the only method after hours of erroneous work that I could figure out, despite multiple times using "get_class()" and it not returning the correct value.
 				## TODO : Find a way to... Not do that. And do it better.
 				var _property_instance = property_type.new()
 				if _property_instance != null:
 					if _property_instance.has_method("get_class"):
-						print(_property_instance.get_class())
 						property_class_name = _property_instance.get_class()
 			## At the very least, custom classes are protected as they'll always return GDScript as their base class, and all will either have resource_names or global_names.
 			## You cannot use a class as an argument if you don't have the class named in some way.
