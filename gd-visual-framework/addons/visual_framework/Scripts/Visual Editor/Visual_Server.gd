@@ -196,7 +196,7 @@ class Registered_Method:
 	
 	var method_name : StringName = ""
 	var method_arguments : Dictionary[StringName, Dictionary] = {}
-	var method_return : Array[Dictionary] = []
+	var method_return : Variant = []
 
 	func _init(in_script : Script = null, new_method_name : StringName = "") -> void:
 		## Store the method's name.
@@ -236,3 +236,70 @@ class Registered_Method:
 				"type" : int(arg["type"])
 			}
 			method_arguments[arg["name"]] = arg_dict
+
+	func create_tuple(in_dictionary : Dictionary[String, Variant]) -> Tuple:
+		var tuple = Tuple.new(in_dictionary)
+		return tuple
+
+	func set_tuple_return(to_tuple : Tuple) -> void:
+		method_return = to_tuple
+		return
+
+	class Tuple:
+		
+		var properties : Dictionary[String, Dictionary] = {}
+		var _class_name : StringName = &"Tuple"
+		
+		func _init(properties : Dictionary[String, Variant] = {}) -> void:
+			for property in properties:
+				if !typeof(properties[property]) == TYPE_OBJECT:
+					store_var(property, properties[property])
+					continue
+				store_class(property, properties[property])
+			return
+		
+		func get_class_name() -> StringName:
+			return _class_name
+		
+		func store_var(property_name : StringName, property_type : Variant) -> void:
+			var property_dict : Dictionary = {
+				"type" : property_type,
+				"type_name" : type_string(property_type),
+				"value" : null,
+			}
+			properties[property_name] = property_dict
+			return
+		
+		func store_class(property_name : StringName, property_type : Object) -> void:
+			var property_class_name : StringName
+			if property_type.get_class() == "GDScriptNativeClass":
+				## If you're using a builtin abstract type or a builtin-type with no instantiation You are likely to get errors here.
+				## This is the only method after hours of erroneous work that I could figure out, despite multiple times using "get_class()" and it not returning the correct value.
+				## TODO : Find a way to... Not do that. And do it better.
+				var _property_instance = property_type.new()
+				if _property_instance != null:
+					if _property_instance.has_method("get_class"):
+						print(_property_instance.get_class())
+						property_class_name = _property_instance.get_class()
+			## At the very least, custom classes are protected as they'll always return GDScript as their base class, and all will either have resource_names or global_names.
+			## You cannot use a class as an argument if you don't have the class named in some way.
+			elif property_type.get_class() == "GDScript":
+				if property_type.resource_name:
+					property_class_name = property_type.resource_name
+				if property_type.get_global_name():
+					property_class_name = property_type.get_global_name()
+				else:
+					## However, for subclasses you have to do a little bit of extra work in order to get the correct name that you want.
+					## When defining a new custom subclass, please ensure that you have the method get_class_name() *and* that the subclass isn't massive.
+					## Otherwise, please create a main class and skip this.
+					var _property_instance = property_type.new()
+					if _property_instance.has_method("get_class_name"):
+						property_class_name = _property_instance.get_class_name()
+			var property_dict : Dictionary = {
+				"type" : TYPE_OBJECT,
+				"class" : property_type,
+				"class_name" : property_class_name,
+				"value" : null,
+			}
+			properties[property_name] = property_dict
+			return
