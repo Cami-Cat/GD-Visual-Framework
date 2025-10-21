@@ -2,7 +2,7 @@
 extends Node
 
 var v_editor_zoom : Vector2 = Vector2.ONE
-var visual_grid : Visual_Editor
+var visual_grid : Visual_Editor = null
 
 ## Set the connection type of any pins to Output, Input or Both. Allows you to create multi-directional connections or one-way directions.
 enum CONNECTION_TYPE {OUTPUT, INPUT, OUTPUT_INPUT}
@@ -76,7 +76,7 @@ func is_script_registered(script_name : StringName = "", script : Script = null)
 	return false
 	
 func create_script_visual_node(registered_script : Registered_Script) -> Visual_Node:
-	var visual_node_path : PackedScene = load("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
+	var visual_node_path : PackedScene = preload("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
 	var visual_node : Visual_Node = visual_node_path.instantiate()
 	visual_node.set_node_name(registered_script.script_name)
 	visual_node.set_node_outputs(registered_script.script_type)
@@ -84,12 +84,12 @@ func create_script_visual_node(registered_script : Registered_Script) -> Visual_
 	return null
 
 func create_function_visual_node(registered_function : Registered_Method) -> Visual_Node:
-	var visual_node_path : PackedScene = load("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
+	var visual_node_path : PackedScene = preload("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
 	var visual_node : Visual_Node = visual_node_path.instantiate()
 	visual_node.set_node_name(registered_function.method_name)
 	visual_node.set_node_outputs(registered_function.method_return, "method", "me:does_method_exist")
 	visual_grid.visual_node_master.add_child(visual_node)
-	return null
+	return visual_node
 
 
 class Registered_Script:

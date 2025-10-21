@@ -6,6 +6,10 @@ var initial_mouse_pos : Vector2 = Vector2.ZERO
 var dragging_offset : Vector2 = Vector2.ZERO
 var is_dragging : bool = false
 
+func _ready() -> void:
+	global_position = Vector2.ZERO
+	visible = true
+
 func _process(delta: float) -> void:
 	if !is_dragging : return
 	global_position = get_global_mouse_position() + dragging_offset

@@ -6,6 +6,8 @@ var timer : Timer = Timer.new()
 
 static func _static_init() -> void:
 	var script = VisualServer.register_script("me", me)
+	if !script:
+		print("Cannot register visual script")
 	var method = script.register_method("does_method_exist")
 	if !method : return
 	

@@ -11,14 +11,13 @@ var file : ConfigFile
 
 func _enable_plugin() -> void:
 	file = ConfigFile.new()
+	add_autoload_singleton(AUTOLOAD_NAME, autoload_path)
 	if file.load(PLUGIN_FILE_PATH) != OK:
 		push_error("Unable to load plugin config file. Was it installed correctly? path [%s]" % [PLUGIN_FILE_PATH])
 		return
 	var details = _get_plugin_details()
 	print_rich("loaded plugin: [b]%s[/b]\n\t\t\t╰› version: [b]%s[/b]\n\t\t\t╰› author: [b]%s[/b]" % \
 						 [details["name"], details["version"], details["author"]])
-	_make_visible(false)
-	add_autoload_singleton(AUTOLOAD_NAME, autoload_path)
 
 func _disable_plugin() -> void:
 	var details = _get_plugin_details()
@@ -37,6 +36,7 @@ func _get_plugin_details() -> Dictionary:
 	return details
 
 func _enter_tree() -> void:
+	await get_tree().create_timer(1).timeout
 	visual_editor_instance = VISUAL_EDITOR.instantiate()
 	EditorInterface.get_editor_main_screen().add_child(visual_editor_instance)
 	_make_visible(false)

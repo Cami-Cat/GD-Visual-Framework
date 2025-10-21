@@ -35,14 +35,21 @@ visual_node_master = NodePath("Background_Grid/Visual_Node_Master")
 [node name="Background_Grid" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_2kgpe")
 layout_mode = 1
-offset_right = 10000.0
-offset_bottom = 5000.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3_3u128")
 
 [node name="Visual_Node_Master" type="Control" parent="Background_Grid"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_4inbe")
 
@@ -101,6 +108,8 @@ z_index = 4096
 y_sort_enabled = true
 layout_mode = 0
 offset_left = -613.0
+offset_top = 0.0
 offset_right = -333.0
+offset_bottom = 300.0
 grow_horizontal = 1
 grow_vertical = 1

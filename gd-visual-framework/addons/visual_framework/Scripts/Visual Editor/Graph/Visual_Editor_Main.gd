@@ -7,12 +7,12 @@ extends Control
 ## How much to adjust zoom levels by. 
 @export var zoom_step : float = 0.5
 ## A reference to the parent of all visual nodes.
-@export var visual_node_master : Control 
+@export var visual_node_master : Visual_Node_Master
 
-const MAX_ZOOM : float = 5
+const MAX_ZOOM : float = 2
 const MIN_ZOOM : float = 0.2
 
-func _init() -> void:
+func _ready() -> void:
 	VisualServer.visual_grid = self
 
 func _gui_input(event: InputEvent) -> void:
