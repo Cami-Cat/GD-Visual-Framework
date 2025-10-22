@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dyf02ih1212s4"]
+
+[ext_resource type="StyleBox" uid="uid://du5hl117t83c7" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Two_Way_Normal.tres" id="1_n8jjh"]
+
+[resource]
+RichTextLabel/styles/background = ExtResource("1_n8jjh")
+RichTextLabel/styles/focus = ExtResource("1_n8jjh")
+RichTextLabel/styles/normal = ExtResource("1_n8jjh")

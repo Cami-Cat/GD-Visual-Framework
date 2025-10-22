@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddeer067x1n44"]
+
+[ext_resource type="Script" uid="uid://c4e6dd40o0cwu" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin.gd" id="1_nlwke"]
+[ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="3_aveua"]
+[ext_resource type="Theme" uid="uid://dnjeaxs7vpn7l" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output.tres" id="3_hgxs5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgk21"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[node name="Node Pin" type="Control" node_paths=PackedStringArray("pin", "pin_name")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1138.0
+offset_bottom = -634.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nlwke")
+pin_type = 2
+pin = NodePath("Pin")
+pin_name = NodePath("Pin Name")
+
+[node name="Pin Name" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -247.0
+offset_top = -16.5
+offset_right = -24.0
+offset_bottom = 16.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_aveua")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fgk21")
+theme_override_styles/background = SubResource("StyleBoxEmpty_fgk21")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_fgk21")
+text = "Output Type"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pin" type="RichTextLabel" parent="."]
+modulate = Color(0, 0.60784316, 1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_hgxs5")

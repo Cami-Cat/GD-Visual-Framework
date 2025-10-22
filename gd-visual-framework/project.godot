@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 VisualServer="*res://addons/visual_framework/Scenes/Visual Editor/Graph/Visual_Editor_Singleton.tscn"
 VEditor="*res://addons/visual_framework/Scenes/Visual Editor/Graph/Visual_Editor_Singleton.tscn"
+VisualPalette="*res://addons/visual_framework/Scripts/Visual_Palette.gd"
 
 [editor_plugins]
 

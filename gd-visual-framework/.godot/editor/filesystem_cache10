@@ -1,14 +1,16 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1761091230
+::res://::1761162038
 icon.svg::CompressedTexture2D::3301990405433983114::1760795853::1760795927::1::::<><><>0<>0<>af63eb8d32ed41a12ea856c5ade271aa<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-Node_Connection.gd::GDScript::6304531129669357916::1760913399::0::1::::Node_Input<>Control<><>0<>0<><>::
 ::res://addons/::1760795852
-::res://addons/visual_framework/::1761067274
-GD_Visual_Framework.gd::GDScript::7517419597670883979::1761067274::0::1::::<>EditorPlugin<><>0<>1<><>::
+::res://addons/visual_framework/::1761161844
+GD_Visual_Framework.gd::GDScript::7517419597670883979::1761152057::0::1::::<>EditorPlugin<><>0<>1<><>::
 plugin.cfg::TextFile::-1::1760795853::0::1::::<><><>0<>0<><>::
-::res://addons/visual_framework/Assets/::1760795852
+::res://addons/visual_framework/Assets/::1761161234
 ::res://addons/visual_framework/Assets/Attributions/::1760795852
 Fonts.txt::TextFile::-1::1760795852::0::1::::<><><>0<>0<><>::
+::res://addons/visual_framework/Assets/Colour Palettes/::1761161239
+::res://addons/visual_framework/Assets/Colour Palettes/Visual Node/::1761161574
+Type_Colours.tres::ColorPalette::2913858320433048541::1761161574::0::1::::<><><>0<>0<><>::
 ::res://addons/visual_framework/Assets/Fonts/::1760795852
 ::res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/::1760795927
 JetBrainsMono-Bold.ttf::FontFile::2523829803545756270::1760795852::1760795927::1::::<><><>0<>0<>7325886f23934f470b38319315101ef1<>res://.godot/imported/JetBrainsMono-Bold.ttf-d1f88bf11e6a08195ad57d11f60b6a62.fontdata::
@@ -44,43 +46,54 @@ JetBrainsMonoNL-SemiBoldItalic.ttf::FontFile::2423299442635633727::1760795852::1
 JetBrainsMonoNL-Thin.ttf::FontFile::2822295159148904776::1760795852::1760795927::1::::<><><>0<>0<>fded892ea2b9bfd1cd0c8f9316f8d15d<>res://.godot/imported/JetBrainsMonoNL-Thin.ttf-c766250e43287e624e7ff78fab433bde.fontdata::
 JetBrainsMonoNL-ThinItalic.ttf::FontFile::6324829580711032403::1760795852::1760795927::1::::<><><>0<>0<>5db44f555ee332801012f42e3ed1426b<>res://.godot/imported/JetBrainsMonoNL-ThinItalic.ttf-f7b698130e29f6292dbd588f6183c9b5.fontdata::
 ::res://addons/visual_framework/Assets/Themes/::1760795852
-::res://addons/visual_framework/Assets/Themes/Text/::1761067320
-TBody_Light.tres::Theme::1195151548956503094::1761067320::0::1::::<><><>0<>0<><>::uid://fpt5db5wo45h::::res://addons/visual_framework/Assets/Themes/Visuals/TButton_Background_Round.tres<>uid://b160potll55mi::::res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf
-THeader_Extra_Bold.tres::Theme::5295167426470774409::1761067320::0::1::::<><><>0<>0<><>::uid://jwa5vd20mp2j::::res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-ExtraBold.ttf
-::res://addons/visual_framework/Assets/Themes/Visuals/::1760795852
+::res://addons/visual_framework/Assets/Themes/Text/::1761162028
+TBody_Light.tres::Theme::1195151548956503094::1761162028::0::1::::<><><>0<>0<><>::uid://fpt5db5wo45h::::res://addons/visual_framework/Assets/Themes/Visuals/TButton_Background_Round.tres<>uid://b160potll55mi::::res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf
+THeader_Extra_Bold.tres::Theme::5295167426470774409::1761162028::0::1::::<><><>0<>0<><>::uid://jwa5vd20mp2j::::res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-ExtraBold.ttf
+::res://addons/visual_framework/Assets/Themes/Visuals/::1761159922
 TButton_Background_Round.tres::StyleBoxFlat::383117241688670023::1760795852::0::1::::<><><>0<>0<><>::
 TNode_Output_Filled.tres::StyleBoxFlat::2952624044247598792::1760795852::0::1::::<><><>0<>0<><>::
 TNode_Output_Hover.tres::StyleBoxFlat::3081413453927327194::1760795852::0::1::::<><><>0<>0<><>::
 TNode_Output_Normal.tres::StyleBoxFlat::1856816576478468772::1760795852::0::1::::<><><>0<>0<><>::
+::res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/::1761160856
+Node_Pin_Input.tres::Theme::206686310770983880::1761160785::0::1::::<><><>0<>0<><>::uid://ocrfedxd3iun::::res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input_Normal.tres
+Node_Pin_Input_Normal.tres::StyleBoxFlat::987813900065075333::1761160806::0::1::::<><><>0<>0<><>::
+Node_Pin_Output.tres::Theme::8090540523457463111::1761160792::0::1::::<><><>0<>0<><>::uid://dfhv5xi8ch4e1::::res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output_Normal.tres
+Node_Pin_Output_Normal.tres::StyleBoxFlat::7525986766110965262::1761160802::0::1::::<><><>0<>0<><>::
+Node_Pin_Two_Way.tres::Theme::8855682760635860973::1761160856::0::1::::<><><>0<>0<><>::uid://du5hl117t83c7::::res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Two_Way_Normal.tres
+Node_Pin_Two_Way_Normal.tres::StyleBoxFlat::8625416326396735244::1761160856::0::1::::<><><>0<>0<><>::
 ::res://addons/visual_framework/Scenes/::1760795852
 ::res://addons/visual_framework/Scenes/Visual Editor/::1760795852
-::res://addons/visual_framework/Scenes/Visual Editor/Graph/::1761067956
-Visual_Editor_Main.tscn::PackedScene::5129551451609380231::1761067956::0::1::::<><><>0<>0<><>::uid://csgo0dou23gi7::::res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd<>uid://b2ulsvyer8lqg::::res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader<>uid://cetm6xcw5hyeg::::res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd<>uid://ddv5jqm0vid3i::::res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd<>uid://cg80bqiec73dj::::res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn
+::res://addons/visual_framework/Scenes/Visual Editor/Graph/::1761152292
+Visual_Editor_Main.tscn::PackedScene::5129551451609380231::1761152292::0::1::::<><><>0<>0<><>::uid://csgo0dou23gi7::::res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd<>uid://b2ulsvyer8lqg::::res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader<>uid://cetm6xcw5hyeg::::res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd<>uid://ddv5jqm0vid3i::::res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd<>uid://cg80bqiec73dj::::res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn
 Visual_Editor_Singleton.tscn::PackedScene::1916759240756021754::1760913247::0::1::::<><><>0<>0<><>::uid://bltjgb38rd3rf::::res://addons/visual_framework/Scripts/Visual Editor/Visual_Server.gd
-::res://addons/visual_framework/Scenes/Visual Editor/Nodes/::1760913483
+::res://addons/visual_framework/Scenes/Visual Editor/Nodes/::1761159664
 Node.tscn::PackedScene::8556343223764236667::1760895764::0::1::::<><><>0<>0<><>::uid://5hla3c7o6a37::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node.gd<>uid://bw2ewh6ocqkc2::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node_Body.gd<>uid://chpavs1bdt7qb::::res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres
 Node_Connection.tscn::PackedScene::7447557173411600001::1760795852::0::1::::<><><>0<>0<><>::uid://cjbcona8po87k::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Connection.gd
 node_input.tscn::PackedScene::6657925309270105468::1760913483::0::1::::<><><>0<>0<><>::uid://cv27ya3j4kync::::res://Node_Connection.gd<>uid://bj5woumua6yd3::::res://addons/visual_framework/Assets/Themes/Visuals/TNode_Output_Hover.tres<>uid://cn7imc7bynxb1::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Output_Circle.gd<>uid://ra68a62oxvi1::::res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres
 Node_Output.tscn::PackedScene::7218157753111058083::1760895812::0::1::::<><><>0<>0<><>::uid://d0fr632latnuk::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Output.gd<>uid://bj5woumua6yd3::::res://addons/visual_framework/Assets/Themes/Visuals/TNode_Output_Hover.tres<>uid://cn7imc7bynxb1::::res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Output_Circle.gd<>uid://ra68a62oxvi1::::res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres
+::res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/::1761162028
+Node_Pin.gd::GDScript::6818463131587813904::1761162028::0::1::::Node_Pin<>Control<><>0<>1<><>::
+node_pin.tscn::PackedScene::7378360681935486251::1761162027::0::1::::<><><>0<>0<><>::uid://c4e6dd40o0cwu::::res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin.gd<>uid://ra68a62oxvi1::::res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres<>uid://dnjeaxs7vpn7l::::res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output.tres
 ::res://addons/visual_framework/Scenes/Visual Editor/UI/::1760795852
 UIPopup_Context_Menu.gd::GDScript::5646259717517642998::1760795852::0::1::::Popup_Context_Menu<>Control<><>0<>1<><>::
 UIPopup_Context_Menu.tscn::PackedScene::5263619458629177727::1760795852::0::1::::<><><>0<>0<><>::uid://cmpdcp7g6ameo::::res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.gd<>uid://ra68a62oxvi1::::res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres<>uid://ebpeg8ocqdg0::::res://addons/visual_framework/Scenes/Visual Editor/UI/UISearch_Bar.gd
 UISearch_Bar.gd::GDScript::283738017131353617::1760795852::0::1::::Search_Bar<>LineEdit<><>0<>1<><>::
-::res://addons/visual_framework/Scripts/::1760795939
-::res://addons/visual_framework/Scripts/Shaders/::1761067320
-Background_Grid.gdshader::Shader::4323508188483318890::1761067320::0::1::::<><><>0<>0<><>::
+::res://addons/visual_framework/Scripts/::1761161967
+Visual_Palette.gd::GDScript::2472284806592784806::1761161967::0::1::::<>Node<><>0<>1<><>::
+::res://addons/visual_framework/Scripts/Shaders/::1761162028
+Background_Grid.gdshader::Shader::4323508188483318890::1761162028::0::1::::<><><>0<>0<><>::
 ::res://addons/visual_framework/Scripts/Visual Editor/::1761067257
 Visual_Server.gd::GDScript::3198278406037031935::1761067257::0::1::::<>Node<><>0<>1<><>::
-::res://addons/visual_framework/Scripts/Visual Editor/Graph/::1761067488
+::res://addons/visual_framework/Scripts/Visual Editor/Graph/::1761093471
 Background_Grid.gd::GDScript::5093605094956351302::1760795852::0::1::::Background_Grid<>ColorRect<><>0<>1<><>::
-Visual_Editor_Main.gd::GDScript::6049521682284706136::1761067488::0::1::::Visual_Editor<>Control<><>0<>1<><>::
-Visual_Node_Master.gd::GDScript::7415018956832316412::1761067142::0::1::::Visual_Node_Master<>Control<><>0<>1<><>::
-::res://addons/visual_framework/Scripts/Visual Editor/Nodes/::1760895916
+Visual_Editor_Main.gd::GDScript::6049521682284706136::1761091844::0::1::::Visual_Editor<>Control<><>0<>1<><>::
+Visual_Node_Master.gd::GDScript::7415018956832316412::1761093471::0::1::::Visual_Node_Master<>Control<><>0<>1<><>::
+::res://addons/visual_framework/Scripts/Visual Editor/Nodes/::1761159866
 Node_Connection.gd::GDScript::5406752457306310222::1760795852::0::1::::Node_Connection<>Line2D<><>0<>1<><>::
 Node_Output.gd::GDScript::8925394092152568734::1760895431::0::1::::Node_Output<>Control<><>0<>1<><>::
-Node_Output_Circle.gd::GDScript::5751863742838013088::1760795852::0::1::::<>RichTextLabel<><>0<>1<><>::
+Node_Output_Circle.gd::GDScript::5751863742838013088::1761159866::0::1::::<>RichTextLabel<><>0<>1<><>::
 Visual_Node.gd::GDScript::2120785315557095600::1760895916::0::1::::Visual_Node<>Control<><>0<>1<><>::
 Visual_Node_Body.gd::GDScript::3986596014718198055::1760795853::0::1::::<>ColorRect<><>0<>1<><>::
-::res://Examples/::1761066267
-test_scene.gd::GDScript::2150808702135668910::1761066264::0::1::::me<>Control<><>0<>1<><>::
+::res://Examples/::1761152179
+test_scene.gd::GDScript::2150808702135668910::1761152179::0::1::::me<>Control<><>0<>1<><>::
 test_scene.tscn::PackedScene::9011901847195925757::1761066267::0::1::::<><><>0<>0<><>::uid://5v4rf47cdyvm::::res://Examples/test_scene.gd
