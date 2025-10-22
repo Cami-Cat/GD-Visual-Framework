@@ -25,7 +25,7 @@ The list continues for an eternity, and I'd rather not bore you to death. All of
 The Godot Visual Framework is not in itself a tool that you can just use straight out of the box. This is a tool that you have to then add to to create your own stuff. Though I'm hoping to minimize the amount of work you have to do to get it to work the way that you want it to.
 
 So lets just get into the nitty gritty with a simple introduction to the Grid System:
-[Add node PNG]
+![alt text](https://github.com/Cami-Cat/GD-Visual-Framework/blob/1cbeed4eb9e4284a33ee8048df83090319f62151/images/NODE.png "Node Image")
 
 This is a Node, they're the basis of everything in this Framework. A node can construct itself based on a registered script, or you can create your own through inherited scenes. Nodes have a few parts that might be interesting:
 ### Node Header
