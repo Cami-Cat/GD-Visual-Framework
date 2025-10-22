@@ -10,7 +10,7 @@ extends Control
 @export var visual_node_master : Visual_Node_Master
 
 const MAX_ZOOM : float = 2
-const MIN_ZOOM : float = 0.2
+const MIN_ZOOM : float = 0.5
 
 func _ready() -> void:
 	VisualServer.visual_grid = self
@@ -38,7 +38,7 @@ func _input(event: InputEvent) -> void:
 ## [/codeblock]
 ## If [member amount] is [member 1], scale will remain the same.
 func _zoom(amount : float = 0.0) -> void:
-	var new_zoom = clamp(grid.scale * Vector2(amount, amount), Vector2(MIN_ZOOM, MIN_ZOOM), Vector2(MAX_ZOOM, MAX_ZOOM))
+	var new_zoom = clamp(visual_node_master.scale * Vector2(amount, amount), Vector2(MIN_ZOOM, MIN_ZOOM), Vector2(MAX_ZOOM, MAX_ZOOM))
 	VisualServer.v_editor_zoom = new_zoom
-	grid.resize(new_zoom)
+	visual_node_master.zoom(new_zoom)
 	return

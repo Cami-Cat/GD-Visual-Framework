@@ -3,3 +3,4 @@ res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres
 res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader
 res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres
 res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd
+res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd

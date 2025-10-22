@@ -29,7 +29,7 @@ size_flags_vertical = 3
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_2ed84")
 grid = NodePath("Background_Grid")
-zoom_step = 0.1
+zoom_step = 0.02
 visual_node_master = NodePath("Background_Grid/Visual_Node_Master")
 
 [node name="Background_Grid" type="ColorRect" parent="."]
@@ -44,6 +44,7 @@ script = ExtResource("3_3u128")
 
 [node name="Visual_Node_Master" type="Control" parent="Background_Grid"]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1152.0

@@ -24,3 +24,11 @@ func _input(event: InputEvent) -> void:
 		elif event.is_released():
 			is_dragging = false
 	return
+
+func zoom(new_scale : Vector2) -> void:	
+	if new_scale == scale : return
+	var mouse_position = get_global_mouse_position() * scale
+	var new_mouse_position = get_global_mouse_position() * new_scale
+	scale = new_scale
+	global_position += (mouse_position - new_mouse_position)
+	return
