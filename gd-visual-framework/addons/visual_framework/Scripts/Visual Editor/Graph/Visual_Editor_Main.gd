@@ -9,6 +9,8 @@ extends Control
 ## A reference to the parent of all visual nodes.
 @export var visual_node_master : Visual_Node_Master
 
+@export var data : Visual_Grid_Data
+
 const MAX_ZOOM : float = 2
 const MIN_ZOOM : float = 0.5
 
@@ -30,7 +32,10 @@ func _input(event: InputEvent) -> void:
 		var visual_node_path : PackedScene = load("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
 		var node = visual_node_path.instantiate()
 		visual_node_master.add_child(node)
+		data._add_node_data(node, node.global_position)
 		return
+	if Input.is_action_just_pressed("ui_page_down"):
+		data._save_grid()
 
 ## Increase or decrease the scale of the grid, increasing or decreasing the size of all of the children it has. Amount affects how much it is scaled by, for reference:
 ## [codeblock]

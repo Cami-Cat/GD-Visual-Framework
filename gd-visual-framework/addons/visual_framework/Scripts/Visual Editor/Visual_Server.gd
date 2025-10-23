@@ -23,7 +23,7 @@ func _get_registered_scripts() -> Dictionary[String, Registered_Script]:
 ## Register a script within the Visual Server. Allows access to it and it's then registered Properties and Methods within the Visual Grid, following whatever implementation of the tool
 ## you decide to use. This will create an object of type [member Registered_Script][br]you can access this object with [method get_registered_script] and then use the methods within
 ## the [member Registered_Script] subclass.
-func register_script(script_name : StringName = "", script : Script = null) -> Registered_Script:
+func register_script(script_name : StringName = "", script : Object = null) -> Registered_Script:
 	if !script:
 		print("Cannot register a script with no given script argument. Called method should look like such: \
 			 register_script(\"this_script\", this_script)")
@@ -77,20 +77,10 @@ func is_script_registered(script_name : StringName = "", script : Script = null)
 	return false
 	
 func create_script_visual_node(registered_script : Registered_Script) -> Visual_Node:
-	var visual_node_path : PackedScene = preload("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
-	var visual_node : Visual_Node = visual_node_path.instantiate()
-	visual_node.set_node_name(registered_script.script_name)
-	visual_node.set_node_outputs(registered_script.script_type)
-	visual_grid.visual_node_master.add_child(visual_node)
 	return null
 
 func create_function_visual_node(registered_function : Registered_Method) -> Visual_Node:
-	var visual_node_path : PackedScene = preload("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
-	var visual_node : Visual_Node = visual_node_path.instantiate()
-	visual_node.set_node_name(registered_function.method_name)
-	visual_node.set_node_outputs(registered_function.method_return, "method", "me:does_method_exist")
-	visual_grid.visual_node_master.add_child(visual_node)
-	return visual_node
+	return null
 
 
 class Registered_Script:

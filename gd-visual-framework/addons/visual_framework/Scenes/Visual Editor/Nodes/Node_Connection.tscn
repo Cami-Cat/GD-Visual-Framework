@@ -4,6 +4,7 @@
 
 [node name="Node Connection" type="Line2D"]
 show_behind_parent = true
+z_index = -1
 width = 2.0
 joint_mode = 1
 begin_cap_mode = 2

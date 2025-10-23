@@ -39,10 +39,16 @@ var pin_value : Variant
 
 
 func _ready() -> void:
+	## Force an update on load.
 	_update_pin_connection_type(connection_type)
+	return
 
 func get_pin_value() -> Variant:
 	return pin_value
+
+func set_pin_value(to_value : Variant) -> void:
+	pin_value = to_value
+	return
 
 ## Update the look of the connection pin to reflect if it's a [member Input], [member Output] or [member Two_Way] pin
 func _update_pin_connection_type(new_type : CONNECTION_TYPES) -> void:

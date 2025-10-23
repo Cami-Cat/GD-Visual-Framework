@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfc170gva71d0"]
+[gd_scene load_steps=9 format=3 uid="uid://cfc170gva71d0"]
 
 [ext_resource type="Script" uid="uid://csgo0dou23gi7" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd" id="1_2ed84"]
 [ext_resource type="Shader" uid="uid://b2ulsvyer8lqg" path="res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader" id="2_0aavy"]
+[ext_resource type="Script" uid="uid://2n6rcegjgde8" path="res://addons/visual_framework/Scripts/Visual Editor/Resources/Visual_Grid_Data.gd" id="2_3u128"]
 [ext_resource type="Script" uid="uid://cetm6xcw5hyeg" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd" id="3_3u128"]
 [ext_resource type="Script" uid="uid://ddv5jqm0vid3i" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd" id="4_4inbe"]
 [ext_resource type="PackedScene" uid="uid://cg80bqiec73dj" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn" id="6_0aavy"]
+
+[sub_resource type="Resource" id="Resource_4inbe"]
+script = ExtResource("2_3u128")
+metadata/_custom_type_script = "uid://2n6rcegjgde8"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2kgpe"]
 shader = ExtResource("2_0aavy")
@@ -31,6 +36,7 @@ script = ExtResource("1_2ed84")
 grid = NodePath("Background_Grid")
 zoom_step = 0.02
 visual_node_master = NodePath("Background_Grid/Visual_Node_Master")
+data = SubResource("Resource_4inbe")
 
 [node name="Background_Grid" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_2kgpe")
