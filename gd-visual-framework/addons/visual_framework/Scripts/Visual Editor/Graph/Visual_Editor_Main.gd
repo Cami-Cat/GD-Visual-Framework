@@ -27,9 +27,9 @@ func _gui_input(event: InputEvent) -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept") && Input.is_action_pressed("ui_cancel"):
-		var registered_script = VisualServer.get_registered_script("me")
-		var registered_method = registered_script.get_method("does_method_exist")
-		VisualServer.create_function_visual_node(registered_method)
+		var visual_node_path : PackedScene = load("res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn")
+		var node = visual_node_path.instantiate()
+		visual_node_master.add_child(node)
 		return
 
 ## Increase or decrease the scale of the grid, increasing or decreasing the size of all of the children it has. Amount affects how much it is scaled by, for reference:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt50yts386dv4"]
+[gd_scene load_steps=5 format=3 uid="uid://dt50yts386dv4"]
 
 [ext_resource type="Script" uid="uid://5hla3c7o6a37" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node.gd" id="1_fexpj"]
 [ext_resource type="Script" uid="uid://bw2ewh6ocqkc2" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node_Body.gd" id="2_884qf"]
 [ext_resource type="Theme" uid="uid://chpavs1bdt7qb" path="res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres" id="3_ffjnk"]
+[ext_resource type="PackedScene" uid="uid://ddeer067x1n44" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/node_pin.tscn" id="4_fexpj"]
 
 [node name="Visual_Node" type="Control" node_paths=PackedStringArray("node_name_reference", "node_header_reference", "node_body_reference", "outputs")]
 z_as_relative = false
@@ -72,6 +73,52 @@ offset_bottom = 48.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 24
+
+[node name="Node Pin" parent="Body/Outputs" instance=ExtResource("4_fexpj")]
+layout_mode = 2
+
+[node name="Node Pin2" parent="Body/Outputs" instance=ExtResource("4_fexpj")]
+modulate = Color(0, 0.7348626, 0, 1)
+layout_mode = 2
+pin_type = 3
+
+[node name="Node Pin3" parent="Body/Outputs" instance=ExtResource("4_fexpj")]
+modulate = Color(1, 0.22153813, 0.40367222, 1)
+layout_mode = 2
+pin_type = 24
+
+[node name="Inputs" type="VBoxContainer" parent="Body"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_right = -437.0
+offset_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Node Pin" parent="Body/Inputs" instance=ExtResource("4_fexpj")]
+layout_mode = 2
+connection_type = 0
+
+[node name="Node Pin2" parent="Body/Inputs" instance=ExtResource("4_fexpj")]
+modulate = Color(0, 0.7348626, 0, 1)
+layout_mode = 2
+connection_type = 0
+pin_type = 3
+
+[node name="Node Pin3" parent="Body/Inputs" instance=ExtResource("4_fexpj")]
+modulate = Color(1, 0.22153813, 0.40367222, 1)
+layout_mode = 2
+connection_type = 0
+pin_type = 24
 
 [connection signal="mouse_entered" from="Body" to="Body" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Body" to="Body" method="_on_mouse_exited"]

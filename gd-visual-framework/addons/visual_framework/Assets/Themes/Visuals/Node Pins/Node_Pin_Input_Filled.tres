@@ -1,14 +1,13 @@
-[gd_resource type="StyleBoxFlat" format=3 uid="uid://dfhv5xi8ch4e1"]
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://4vgde71cokm4"]
 
 [resource]
 resource_local_to_scene = true
 bg_color = Color(1, 1, 1, 1)
-draw_center = false
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_right = 45
-corner_radius_bottom_right = 45
+corner_radius_top_left = 45
+corner_radius_bottom_left = 45
 anti_aliasing = false

@@ -31,15 +31,28 @@ var pin_class_name : StringName = &""
 ## The actual value of the pin, set when a function is finished or when a get/set signal is sent.
 var pin_value : Variant
 
+
+## -- Section : Visuals
+
+
+func _ready() -> void:
+	_update_pin_connection_type(connection_type)
+
 ## Update the look of the connection pin to reflect if it's a [member Input], [member Output] or [member Two_Way] pin
 func _update_pin_connection_type(new_type : CONNECTION_TYPES) -> void:
 	var theme_path : String = ""
 	match new_type:
 		CONNECTION_TYPES.INPUT:
+			pin_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+			pin_name.text = type_string(pin_type)
 			theme_path = "res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input.tres"
 		CONNECTION_TYPES.OUTPUT:
+			pin_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+			pin_name.text = type_string(pin_type)
 			theme_path = "res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output.tres"
 		CONNECTION_TYPES.TWO_WAY:
+			pin_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+			pin_name.text = type_string(pin_type)
 			theme_path = "res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Two_Way.tres"
 	_set_pin_theme(theme_path)
 	return
@@ -51,9 +64,24 @@ func _set_pin_theme(theme_path : StringName) -> void:
 		pin.theme = _theme
 		current_theme = _theme
 
+func _set_pin_state(state : bool = false) -> void:
+	var state_path : String = ""
+	if state:
+		match connection_type:
+			CONNECTION_TYPES.INPUT:
+				state_path = "res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input_Filled.tres"
+			CONNECTION_TYPES.OUTPUT:
+				state_path = "res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output_Filled.tres"
+			CONNECTION_TYPES.TWO_WAY:
+				state_path = "res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Two_Way_Filled.tres"
+		pin.add_theme_stylebox_override("normal", load(state_path))
+		return
+	pin.remove_theme_stylebox_override("normal")
+	return
+
 ## Set the colour of the pin to match the colour in the TYPE_PALETTE you can find by default at:
 ## ("res://addons/visual_framework/Assets/Colour Palettes/Visual Node/Type_Colours.tres")
 func _set_pin_colour(pin_type : Variant) -> void:
 	if !self.is_node_ready() : await self.ready
-	pin.modulate = VisualPalette.type_palette.colors[pin_type]
+	modulate = VisualPalette.type_palette.colors[pin_type]
 	return
