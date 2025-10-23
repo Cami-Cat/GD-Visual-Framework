@@ -3,6 +3,7 @@ extends Node
 
 var v_editor_zoom : Vector2 = Vector2.ONE
 var visual_grid : Visual_Editor = null
+var mouse_over_pin : Node_Pin = null
 
 ## Set the connection type of any pins to Output, Input or Both. Allows you to create multi-directional connections or one-way directions.
 enum CONNECTION_TYPE {OUTPUT, INPUT, OUTPUT_INPUT}

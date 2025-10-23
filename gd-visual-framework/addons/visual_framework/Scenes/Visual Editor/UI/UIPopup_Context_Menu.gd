@@ -36,6 +36,7 @@ func _ready() -> void:
 	return
 
 func _input(event: InputEvent) -> void:
+	if VisualServer.mouse_over_pin != null : return
 	if event is InputEventMouseButton:
 		match event.button_index:
 			MOUSE_BUTTON_RIGHT:

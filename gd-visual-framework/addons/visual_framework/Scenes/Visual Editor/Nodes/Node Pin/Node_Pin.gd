@@ -7,6 +7,8 @@ var current_theme : Theme = load("res://addons/visual_framework/Assets/Themes/Vi
 
 enum CONNECTION_TYPES {INPUT, OUTPUT, TWO_WAY}
 
+var pin_connections : Dictionary[Node_Pin, Node_Connection] = {}
+
 @export_group("Pin Type")
 ## The connection type of the pin, how it acts with other pins. It can be [member OUTPUT], [member INPUT] and [member TWO_WAY].
 @export var connection_type : CONNECTION_TYPES = CONNECTION_TYPES.OUTPUT :
@@ -27,6 +29,7 @@ var pin_class_name : StringName = &""
 ## Important node references in order to be able to change their values correctly.
 @export var pin: RichTextLabel
 @export var pin_name: RichTextLabel
+@export var pin_connection_point : Control
 
 ## The actual value of the pin, set when a function is finished or when a get/set signal is sent.
 var pin_value : Variant
@@ -37,6 +40,9 @@ var pin_value : Variant
 
 func _ready() -> void:
 	_update_pin_connection_type(connection_type)
+
+func get_pin_value() -> Variant:
+	return pin_value
 
 ## Update the look of the connection pin to reflect if it's a [member Input], [member Output] or [member Two_Way] pin
 func _update_pin_connection_type(new_type : CONNECTION_TYPES) -> void:
@@ -76,7 +82,8 @@ func _set_pin_state(state : bool = false) -> void:
 				state_path = "res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Two_Way_Filled.tres"
 		pin.add_theme_stylebox_override("normal", load(state_path))
 		return
-	pin.remove_theme_stylebox_override("normal")
+	if pin_connections.size() == 0:
+		pin.remove_theme_stylebox_override("normal")
 	return
 
 ## Set the colour of the pin to match the colour in the TYPE_PALETTE you can find by default at:
@@ -84,4 +91,12 @@ func _set_pin_state(state : bool = false) -> void:
 func _set_pin_colour(pin_type : Variant) -> void:
 	if !self.is_node_ready() : await self.ready
 	modulate = VisualPalette.type_palette.colors[pin_type]
+	return
+
+func _on_pin_mouse_entered() -> void:
+	VisualServer.mouse_over_pin = self
+	return
+
+func _on_pin_mouse_exited() -> void:
+	VisualServer.mouse_over_pin = null
 	return

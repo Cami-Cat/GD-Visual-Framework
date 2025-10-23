@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://cjbcona8po87k" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Connection.gd" id="1_74qjd"]
 
 [node name="Node Connection" type="Line2D"]
-z_index = -100
-z_as_relative = false
+show_behind_parent = true
 width = 2.0
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 script = ExtResource("1_74qjd")

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ddeer067x1n44" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/node_pin.tscn" id="4_fexpj"]
 
 [node name="Visual_Node" type="Control" node_paths=PackedStringArray("node_name_reference", "node_header_reference", "node_body_reference", "outputs")]
-z_as_relative = false
+y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 450.0
@@ -17,23 +17,14 @@ mouse_filter = 2
 script = ExtResource("1_fexpj")
 node_size = Vector2(450, 150)
 node_name_reference = NodePath("Body/Node Name")
-node_header_reference = NodePath("Header")
+node_header_reference = NodePath("Body/Header")
 header_colour = Color(0.8081462, 0.3447109, 0.38969603, 1)
 node_body_reference = NodePath("Body")
 body_colour = Color(0.0062734825, 0.031865284, 0.07004044, 1)
 outputs = NodePath("Body/Outputs")
 
-[node name="Header" type="ColorRect" parent="."]
-z_index = 1
-y_sort_enabled = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 5.0
-grow_horizontal = 2
-color = Color(0.8081462, 0.3447109, 0.38969603, 1)
-
 [node name="Body" type="ColorRect" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,6 +36,8 @@ script = ExtResource("2_884qf")
 
 [node name="Node Name" type="RichTextLabel" parent="Body"]
 z_index = 1
+z_as_relative = false
+y_sort_enabled = true
 layout_mode = 1
 offset_left = 14.0
 offset_top = 12.0
@@ -119,6 +112,16 @@ modulate = Color(1, 0.22153813, 0.40367222, 1)
 layout_mode = 2
 connection_type = 0
 pin_type = 24
+
+[node name="Header" type="ColorRect" parent="Body"]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+color = Color(0.8081462, 0.3447109, 0.38969603, 1)
 
 [connection signal="mouse_entered" from="Body" to="Body" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Body" to="Body" method="_on_mouse_exited"]

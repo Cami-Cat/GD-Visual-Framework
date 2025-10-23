@@ -11,7 +11,7 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 
-[node name="Node Pin" type="Control" node_paths=PackedStringArray("pin", "pin_name")]
+[node name="Node Pin" type="Control" node_paths=PackedStringArray("pin", "pin_name", "pin_connection_point")]
 modulate = Color(0, 0.60784316, 1, 1)
 layout_mode = 3
 anchors_preset = 15
@@ -26,6 +26,7 @@ script = ExtResource("1_nlwke")
 pin_type = 2
 pin = NodePath("Pin")
 pin_name = NodePath("Pin Name")
+pin_connection_point = NodePath("Connection Point")
 
 [node name="Pin Name" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -45,7 +46,7 @@ theme = ExtResource("3_aveua")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fgk21")
 theme_override_styles/background = SubResource("StyleBoxEmpty_fgk21")
 theme_override_styles/fill = SubResource("StyleBoxEmpty_fgk21")
-text = "Output Type"
+text = "int"
 scroll_active = false
 vertical_alignment = 1
 
@@ -70,5 +71,14 @@ anchors_preset = 0
 script = ExtResource("4_nlwke")
 pin = NodePath("..")
 
+[node name="Connection Point" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 7.5
+offset_bottom = 7.5
+
+[connection signal="mouse_entered" from="Pin" to="." method="_on_pin_mouse_entered"]
 [connection signal="mouse_entered" from="Pin" to="Input Handling" method="_on_pin_mouse_entered"]
+[connection signal="mouse_exited" from="Pin" to="." method="_on_pin_mouse_exited"]
 [connection signal="mouse_exited" from="Pin" to="Input Handling" method="_on_pin_mouse_exited"]
