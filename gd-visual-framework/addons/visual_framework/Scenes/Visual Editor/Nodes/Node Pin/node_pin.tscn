@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c4e6dd40o0cwu" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin.gd" id="1_nlwke"]
 [ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="3_aveua"]
-[ext_resource type="Theme" uid="uid://dnjeaxs7vpn7l" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output.tres" id="3_hgxs5"]
+[ext_resource type="Theme" uid="uid://c7edf5xey84k" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input.tres" id="3_tihs2"]
 [ext_resource type="Script" uid="uid://cc7nmrlo05cuv" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin_Input_Handling.gd" id="4_nlwke"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgk21"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ideqn"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
@@ -23,6 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_nlwke")
+connection_type = 0
 pin_type = 2
 pin = NodePath("Pin")
 pin_name = NodePath("Pin Name")
@@ -43,11 +44,12 @@ grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("3_aveua")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fgk21")
-theme_override_styles/background = SubResource("StyleBoxEmpty_fgk21")
-theme_override_styles/fill = SubResource("StyleBoxEmpty_fgk21")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ideqn")
 text = "int"
 scroll_active = false
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Pin" type="RichTextLabel" parent="."]
@@ -64,7 +66,7 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_hgxs5")
+theme = ExtResource("3_tihs2")
 
 [node name="Input Handling" type="Control" parent="." node_paths=PackedStringArray("pin")]
 anchors_preset = 0

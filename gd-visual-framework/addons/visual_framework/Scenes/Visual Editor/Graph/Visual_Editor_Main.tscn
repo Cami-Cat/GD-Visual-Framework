@@ -1,15 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfc170gva71d0"]
+[gd_scene load_steps=12 format=3 uid="uid://cfc170gva71d0"]
 
 [ext_resource type="Script" uid="uid://csgo0dou23gi7" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd" id="1_2ed84"]
 [ext_resource type="Shader" uid="uid://b2ulsvyer8lqg" path="res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader" id="2_0aavy"]
-[ext_resource type="Script" uid="uid://2n6rcegjgde8" path="res://addons/visual_framework/Scripts/Visual Editor/Resources/Visual_Grid_Data.gd" id="2_3u128"]
 [ext_resource type="Script" uid="uid://cetm6xcw5hyeg" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd" id="3_3u128"]
 [ext_resource type="Script" uid="uid://ddv5jqm0vid3i" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd" id="4_4inbe"]
 [ext_resource type="PackedScene" uid="uid://cg80bqiec73dj" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn" id="6_0aavy"]
-
-[sub_resource type="Resource" id="Resource_4inbe"]
-script = ExtResource("2_3u128")
-metadata/_custom_type_script = "uid://2n6rcegjgde8"
+[ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="7_3u128"]
+[ext_resource type="FontFile" uid="uid://b160potll55mi" path="res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf" id="8_jx55a"]
+[ext_resource type="Script" uid="uid://c5b54djou026s" path="res://addons/visual_framework/Scenes/Visual Editor/Graph/Save_Status.gd" id="10_p4avv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2kgpe"]
 shader = ExtResource("2_0aavy")
@@ -22,21 +20,25 @@ shader_parameter/offset = Vector2(0, 33.78)
 shader_parameter/anti_aliasing_factor = 0.01
 shader_parameter/stochastic_samples = 16
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4inbe"]
+
+[sub_resource type="Theme" id="Theme_jx55a"]
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("8_jx55a")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_4inbe")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_4inbe")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_4inbe")
+
 [node name="Visual Editor Main" type="Control" node_paths=PackedStringArray("grid", "visual_node_master")]
 clip_contents = true
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 size_flags_vertical = 3
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_2ed84")
 grid = NodePath("Background_Grid")
 zoom_step = 0.02
 visual_node_master = NodePath("Background_Grid/Visual_Node_Master")
-data = SubResource("Resource_4inbe")
 
 [node name="Background_Grid" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_2kgpe")
@@ -46,6 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_3u128")
 
 [node name="Visual_Node_Master" type="Control" parent="Background_Grid"]
@@ -53,8 +56,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1152.0
-offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -62,53 +63,12 @@ script = ExtResource("4_4inbe")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -491.0
-offset_top = 15.0
-offset_right = -17.0
-offset_bottom = 55.0
-grow_horizontal = 0
-
-[node name="Button Container" type="HBoxContainer" parent="UI"]
-clip_contents = true
-custom_minimum_size = Vector2(50, 10)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -369.0
-offset_top = -31.5
-offset_bottom = 21.5
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-alignment = 2
-
-[node name="Scale" type="Button" parent="UI/Button Container"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "A"
-text_overrun_behavior = 1
-clip_text = true
-
-[node name="Panning" type="Button" parent="UI/Button Container"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "B"
-text_overrun_behavior = 1
-clip_text = true
-
-[node name="Add Node" type="MenuButton" parent="UI/Button Container"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "+"
-flat = false
+mouse_filter = 2
 
 [node name="Popup Context Menu" parent="UI" instance=ExtResource("6_0aavy")]
 z_index = 4096
@@ -120,3 +80,112 @@ offset_right = -333.0
 offset_bottom = 300.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Top Bar" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+
+[node name="Background" type="ColorRect" parent="UI/Top Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.050980393, 0.050980393, 0.050980393, 1)
+
+[node name="Button Container" type="HBoxContainer" parent="UI/Top Bar"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -361.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Add Node" type="MenuButton" parent="UI/Top Bar/Button Container"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "+"
+flat = false
+
+[node name="Script Information" type="Control" parent="UI/Top Bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Script Name" type="LineEdit" parent="UI/Top Bar/Script Information"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 19.0
+offset_top = -16.5
+offset_right = 121.0
+offset_bottom = 16.5
+grow_vertical = 2
+theme = SubResource("Theme_jx55a")
+theme_override_fonts/font = ExtResource("8_jx55a")
+placeholder_text = "Unnamed"
+max_length = 24
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+backspace_deletes_composite_character_enabled = true
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+
+[node name="Separator" type="ColorRect" parent="UI/Top Bar/Script Information/Script Name"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -10.5
+offset_right = 18.0
+offset_bottom = 10.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.54509807, 0.54509807, 0.54509807, 1)
+
+[node name="Save Status" type="Label" parent="UI/Top Bar/Script Information/Script Name/Separator"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -16.5
+offset_right = 120.0
+offset_bottom = 16.5
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+theme = ExtResource("7_3u128")
+theme_override_font_sizes/font_size = 14
+text = "Unsaved"
+vertical_alignment = 1
+script = ExtResource("10_p4avv")
+
+[connection signal="text_changed" from="UI/Top Bar/Script Information/Script Name" to="." method="set_grid_name"]
+[connection signal="text_submitted" from="UI/Top Bar/Script Information/Script Name" to="." method="set_grid_name"]

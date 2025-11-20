@@ -1,0 +1,47 @@
+[gd_scene load_steps=25 format=3 uid="uid://cl8iy1tt05wb5"]
+
+[ext_resource type="Script" uid="uid://csgo0dou23gi7" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd" id="1_8fhxk"]
+[ext_resource type="Shader" uid="uid://b2ulsvyer8lqg" path="res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader" id="2_ph71c"]
+[ext_resource type="Script" uid="uid://cetm6xcw5hyeg" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd" id="3_v37yy"]
+[ext_resource type="Script" uid="uid://ddv5jqm0vid3i" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd" id="4_pq164"]
+[ext_resource type="Script" uid="uid://5hla3c7o6a37" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node.gd" id="5_0f1y2"]
+[ext_resource type="Script" uid="uid://bw2ewh6ocqkc2" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node_Body.gd" id="6_ct2kf"]
+[ext_resource type="Theme" uid="uid://chpavs1bdt7qb" path="res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres" id="7_ixrub"]
+[ext_resource type="Script" uid="uid://c4e6dd40o0cwu" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin.gd" id="8_t7uw6"]
+[ext_resource type="Script" uid="uid://cjbcona8po87k" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Connection.gd" id="9_s0nc2"]
+[ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="10_lohy6"]
+[ext_resource type="Theme" uid="uid://dnjeaxs7vpn7l" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output.tres" id="11_hqpx6"]
+[ext_resource type="StyleBox" uid="uid://dmtbgegaicsgq" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output_Filled.tres" id="12_nyotg"]
+[ext_resource type="Script" uid="uid://cc7nmrlo05cuv" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin_Input_Handling.gd" id="13_ir8ld"]
+[ext_resource type="Theme" uid="uid://c7edf5xey84k" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input.tres" id="14_83hlj"]
+[ext_resource type="StyleBox" uid="uid://4vgde71cokm4" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input_Filled.tres" id="15_fedj4"]
+[ext_resource type="PackedScene" uid="uid://cg80bqiec73dj" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn" id="16_vbwi0"]
+[ext_resource type="Script" uid="uid://cmpdcp7g6ameo" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.gd" id="17_4kc3e"]
+[ext_resource type="Script" uid="uid://ebpeg8ocqdg0" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UISearch_Bar.gd" id="18_08fi4"]
+[ext_resource type="FontFile" uid="uid://b160potll55mi" path="res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf" id="19_0u27k"]
+[ext_resource type="Script" uid="uid://c5b54djou026s" path="res://addons/visual_framework/Scenes/Visual Editor/Graph/Save_Status.gd" id="20_mtgbl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kgpe"]
+shader = ExtResource("2_ph71c")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.05197101, 0.051970944, 0.05197095, 1)
+shader_parameter/dot_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+shader_parameter/resolution = Vector2(5000, 5000)
+shader_parameter/offset = Vector2(0, 33.78)
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ideqn"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4inbe"]
+
+[sub_resource type="Theme" id="Theme_jx55a"]
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("19_0u27k")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_4inbe")
+LineEdit/styles/normal =

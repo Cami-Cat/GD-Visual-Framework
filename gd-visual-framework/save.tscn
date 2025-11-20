@@ -1,0 +1,201 @@
+[gd_scene load_steps=12 format=3 uid="uid://cf83negiuyyfs"]
+
+[ext_resource type="Script" uid="uid://csgo0dou23gi7" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd" id="1_b20gq"]
+[ext_resource type="Shader" uid="uid://b2ulsvyer8lqg" path="res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader" id="3_iq2ul"]
+[ext_resource type="Script" uid="uid://cetm6xcw5hyeg" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd" id="4_a2v4o"]
+[ext_resource type="Script" uid="uid://ddv5jqm0vid3i" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd" id="5_hk5om"]
+[ext_resource type="PackedScene" uid="uid://cg80bqiec73dj" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn" id="6_edbac"]
+[ext_resource type="FontFile" uid="uid://b160potll55mi" path="res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf" id="7_hk5om"]
+[ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="9_ma63l"]
+[ext_resource type="Script" uid="uid://c5b54djou026s" path="res://addons/visual_framework/Scenes/Visual Editor/Graph/Save_Status.gd" id="10_kop1v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kgpe"]
+shader = ExtResource("3_iq2ul")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.05197101, 0.051970944, 0.05197095, 1)
+shader_parameter/dot_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+shader_parameter/resolution = Vector2(5000, 5000)
+shader_parameter/offset = Vector2(0, 33.78)
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4inbe"]
+
+[sub_resource type="Theme" id="Theme_jx55a"]
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("7_hk5om")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_4inbe")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_4inbe")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_4inbe")
+
+[node name="Visual Editor Main" type="Control" node_paths=PackedStringArray("grid", "visual_node_master")]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_b20gq")
+grid = NodePath("Background_Grid")
+zoom_step = 0.02
+visual_node_master = NodePath("Background_Grid/Visual_Node_Master")
+
+[node name="Background_Grid" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2kgpe")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_a2v4o")
+
+[node name="Visual_Node_Master" type="Control" parent="Background_Grid"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_hk5om")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Popup Context Menu" parent="UI" instance=ExtResource("6_edbac")]
+z_index = 4096
+y_sort_enabled = true
+layout_mode = 0
+offset_left = -199.0
+offset_top = 898.0
+offset_right = 81.0
+offset_bottom = 1198.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Top Bar" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+
+[node name="Background" type="ColorRect" parent="UI/Top Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.050980393, 0.050980393, 1)
+
+[node name="Button Container" type="HBoxContainer" parent="UI/Top Bar"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -361.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Scale" type="Button" parent="UI/Top Bar/Button Container"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "A"
+text_overrun_behavior = 1
+clip_text = true
+
+[node name="Panning" type="Button" parent="UI/Top Bar/Button Container"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "B"
+text_overrun_behavior = 1
+clip_text = true
+
+[node name="Add Node" type="MenuButton" parent="UI/Top Bar/Button Container"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "+"
+flat = false
+
+[node name="Script Information" type="Control" parent="UI/Top Bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="Script Name" type="LineEdit" parent="UI/Top Bar/Script Information"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 19.0
+offset_top = -16.5
+offset_right = 121.0
+offset_bottom = 16.5
+grow_vertical = 2
+theme = SubResource("Theme_jx55a")
+theme_override_fonts/font = ExtResource("7_hk5om")
+placeholder_text = "Unnamed"
+max_length = 24
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+backspace_deletes_composite_character_enabled = true
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Separator" type="ColorRect" parent="UI/Top Bar/Script Information/Script Name"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -10.5
+offset_right = 18.0
+offset_bottom = 10.5
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.54509807, 0.54509807, 0.54509807, 1)
+
+[node name="Save Status" type="Label" parent="UI/Top Bar/Script Information/Script Name/Separator"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -16.5
+offset_right = 120.0
+offset_bottom = 16.5
+grow_vertical = 2
+theme = ExtResource("9_ma63l")
+theme_override_font_sizes/font_size = 14
+text = "Unsaved"
+vertical_alignment = 1
+script = ExtResource("10_kop1v")
+
+[connection signal="text_changed" from="UI/Top Bar/Script Information/Script Name" to="." method="set_grid_name"]
+[connection signal="text_submitted" from="UI/Top Bar/Script Information/Script Name" to="." method="set_grid_name"]

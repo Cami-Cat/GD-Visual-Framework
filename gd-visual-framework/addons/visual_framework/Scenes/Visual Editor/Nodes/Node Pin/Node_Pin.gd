@@ -7,7 +7,9 @@ var current_theme : Theme = load("res://addons/visual_framework/Assets/Themes/Vi
 
 enum CONNECTION_TYPES {INPUT, OUTPUT, TWO_WAY}
 
-var pin_connections : Dictionary[Node_Pin, Node_Connection] = {}
+@export_storage var pin_connections : Dictionary[Node_Pin, Node_Connection]
+
+@export var node_owner : Visual_Node
 
 @export_group("Pin Type")
 ## The connection type of the pin, how it acts with other pins. It can be [member OUTPUT], [member INPUT] and [member TWO_WAY].
@@ -32,7 +34,7 @@ var pin_class_name : StringName = &""
 @export var pin_connection_point : Control
 
 ## The actual value of the pin, set when a function is finished or when a get/set signal is sent.
-var pin_value : Variant
+@export_storage var pin_value : Variant
 
 
 ## -- Section : Visuals
@@ -52,6 +54,7 @@ func set_pin_value(to_value : Variant) -> void:
 
 ## Update the look of the connection pin to reflect if it's a [member Input], [member Output] or [member Two_Way] pin
 func _update_pin_connection_type(new_type : CONNECTION_TYPES) -> void:
+	if !self.is_node_ready() : await ready
 	var theme_path : String = ""
 	match new_type:
 		CONNECTION_TYPES.INPUT:
@@ -71,10 +74,9 @@ func _update_pin_connection_type(new_type : CONNECTION_TYPES) -> void:
 
 ## Actually set the theme, only if it's not the same as the current one.
 func _set_pin_theme(theme_path : StringName) -> void:
-	if current_theme.resource_path != theme_path :
-		var _theme = load(theme_path)
-		pin.theme = _theme
-		current_theme = _theme
+	var _theme = load(theme_path)
+	pin.theme = _theme
+	current_theme = _theme
 
 func _set_pin_state(state : bool = false) -> void:
 	var state_path : String = ""

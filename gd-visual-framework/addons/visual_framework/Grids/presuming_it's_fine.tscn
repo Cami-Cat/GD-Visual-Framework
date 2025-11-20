@@ -1,0 +1,858 @@
+[gd_scene load_steps=23 format=3 uid="uid://bxrly82dj8ibh"]
+
+[ext_resource type="Script" uid="uid://csgo0dou23gi7" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd" id="1_pyful"]
+[ext_resource type="Shader" uid="uid://b2ulsvyer8lqg" path="res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader" id="2_4amdt"]
+[ext_resource type="Script" uid="uid://cetm6xcw5hyeg" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd" id="3_v1837"]
+[ext_resource type="Script" uid="uid://ddv5jqm0vid3i" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd" id="4_diqk2"]
+[ext_resource type="Script" uid="uid://5hla3c7o6a37" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node.gd" id="5_f8bha"]
+[ext_resource type="Script" uid="uid://bw2ewh6ocqkc2" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node_Body.gd" id="6_pd3w8"]
+[ext_resource type="Theme" uid="uid://chpavs1bdt7qb" path="res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres" id="7_hvfpn"]
+[ext_resource type="PackedScene" uid="uid://ddeer067x1n44" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/node_pin.tscn" id="8_iql8b"]
+[ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="10_hodis"]
+[ext_resource type="Theme" uid="uid://dnjeaxs7vpn7l" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output.tres" id="11_mrv0r"]
+[ext_resource type="StyleBox" uid="uid://dmtbgegaicsgq" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output_Filled.tres" id="12_48k5e"]
+[ext_resource type="Script" uid="uid://cc7nmrlo05cuv" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin_Input_Handling.gd" id="13_a1idl"]
+[ext_resource type="Script" uid="uid://cjbcona8po87k" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Connection.gd" id="14_hkn16"]
+[ext_resource type="Theme" uid="uid://c7edf5xey84k" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input.tres" id="15_vsx37"]
+[ext_resource type="StyleBox" uid="uid://4vgde71cokm4" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input_Filled.tres" id="16_6etlr"]
+[ext_resource type="PackedScene" uid="uid://cg80bqiec73dj" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn" id="17_fghnc"]
+[ext_resource type="FontFile" uid="uid://b160potll55mi" path="res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf" id="20_ywj4b"]
+[ext_resource type="Script" uid="uid://c5b54djou026s" path="res://addons/visual_framework/Scenes/Visual Editor/Graph/Save_Status.gd" id="21_16y6d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kgpe"]
+shader = ExtResource("2_4amdt")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.05197101, 0.051970944, 0.05197095, 1)
+shader_parameter/dot_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+shader_parameter/resolution = Vector2(5000, 5000)
+shader_parameter/offset = Vector2(0, 33.78)
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ideqn"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4inbe"]
+
+[sub_resource type="Theme" id="Theme_jx55a"]
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("20_ywj4b")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_4inbe")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_4inbe")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_4inbe")
+
+[node name="presuming_it\'s_fine" type="Control" node_paths=PackedStringArray("grid", "visual_node_master")]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_pyful")
+grid = NodePath("Background_Grid")
+zoom_step = 0.02
+visual_node_master = NodePath("Background_Grid/Visual_Node_Master")
+
+[node name="Background_Grid" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2kgpe")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_v1837")
+
+[node name="Visual_Node_Master" type="Control" parent="Background_Grid"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 6.1035156e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0183691, 1.0183691)
+mouse_filter = 2
+script = ExtResource("4_diqk2")
+
+[node name="Visual_Node_duplicate" type="Control" parent="Background_Grid/Visual_Node_Master" node_paths=PackedStringArray("node_name_reference", "node_header_reference", "node_body_reference")]
+y_sort_enabled = true
+anchors_preset = 0
+offset_left = -224.0
+offset_top = 56.0
+offset_right = 226.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_f8bha")
+node_size = Vector2(450, 150)
+node_name_reference = NodePath("Body/Node Name")
+node_header_reference = NodePath("Body/Header")
+header_colour = Color(0.8081462, 0.3447109, 0.38969603, 1)
+node_body_reference = NodePath("Body")
+body_colour = Color(0.0062734825, 0.031865284, 0.07004044, 1)
+
+[node name="Body" type="ColorRect" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0062734825, 0.031865284, 0.07004044, 1)
+script = ExtResource("6_pd3w8")
+
+[node name="Node Name" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
+layout_mode = 1
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 269.0
+offset_bottom = 52.0
+mouse_filter = 1
+theme = ExtResource("7_hvfpn")
+bbcode_enabled = true
+text = "Node Name"
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+
+[node name="Header" type="ColorRect" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body"]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+color = Color(0.8081462, 0.3447109, 0.38969603, 1)
+
+[node name="Outputs" type="VBoxContainer" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -20.0
+offset_right = 15.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Node Pin" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("8_iql8b")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+
+[node name="Pin Name2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -17.0
+offset_right = 101.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_hodis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ideqn")
+text = "int"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Pin2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_mrv0r")
+theme_override_styles/normal = ExtResource("12_48k5e")
+
+[node name="Input Handling2" type="Control" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin" node_paths=PackedStringArray("pin", "lines")]
+anchors_preset = 0
+script = ExtResource("13_a1idl")
+pin = NodePath("..")
+lines = [NodePath("../@Line2D@60440")]
+
+[node name="Connection Point2" type="Control" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin"]
+anchors_preset = 0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 7.5
+offset_bottom = 7.5
+
+[node name="@Line2D@60440" type="Line2D" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin"]
+z_index = -1
+points = PackedVector2Array(14, 0, 480.00003, 82.00005)
+width = 2.0
+joint_mode = 2
+script = ExtResource("14_hkn16")
+
+[node name="Node Pin2" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("8_iql8b")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+
+[node name="Pin Name2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -17.0
+offset_right = 101.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_hodis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ideqn")
+text = "int"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Pin2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_mrv0r")
+theme_override_styles/normal = ExtResource("12_48k5e")
+
+[node name="Input Handling2" type="Control" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin2" node_paths=PackedStringArray("pin", "lines")]
+anchors_preset = 0
+script = ExtResource("13_a1idl")
+pin = NodePath("..")
+lines = [NodePath("../@Line2D@60441")]
+
+[node name="Connection Point2" type="Control" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin2"]
+anchors_preset = 0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 7.5
+offset_bottom = 7.5
+
+[node name="@Line2D@60441" type="Line2D" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Outputs/Node Pin2"]
+z_index = -1
+points = PackedVector2Array(14, 0, 480.00003, 82.00005)
+width = 2.0
+joint_mode = 2
+script = ExtResource("14_hkn16")
+
+[node name="Inputs" type="VBoxContainer" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -10.0
+offset_right = 24.0
+offset_bottom = 10.0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Node Pin" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("8_iql8b")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+
+[node name="Pin Name2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs/Node Pin"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -17.0
+offset_right = 101.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_hodis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ideqn")
+text = "int"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pin2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs/Node Pin"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_vsx37")
+
+[node name="Input Handling2" type="Control" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs/Node Pin" node_paths=PackedStringArray("pin")]
+anchors_preset = 0
+script = ExtResource("13_a1idl")
+pin = NodePath("..")
+
+[node name="Connection Point2" type="Control" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs/Node Pin"]
+anchors_preset = 0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 7.5
+offset_bottom = 7.5
+
+[node name="Node Pin2" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("8_iql8b")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+
+[node name="Pin Name2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs/Node Pin2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -17.0
+offset_right = 101.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_hodis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ideqn")
+text = "int"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pin2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs/Node Pin2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_vsx37")
+
+[node name="Input Handling2" type="Control" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs/Node Pin2" node_paths=PackedStringArray("pin")]
+anchors_preset = 0
+script = ExtResource("13_a1idl")
+pin = NodePath("..")
+
+[node name="Connection Point2" type="Control" parent="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body/Inputs/Node Pin2"]
+anchors_preset = 0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 7.5
+offset_bottom = 7.5
+
+[node name="@Control@60439" type="Control" parent="Background_Grid/Visual_Node_Master" node_paths=PackedStringArray("node_name_reference", "node_header_reference", "node_body_reference")]
+y_sort_enabled = true
+anchors_preset = 0
+offset_left = 697.0
+offset_top = 128.0
+offset_right = 1147.0
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_f8bha")
+node_size = Vector2(450, 150)
+node_name_reference = NodePath("Body/Node Name")
+node_header_reference = NodePath("Body/Header")
+header_colour = Color(0.8081462, 0.3447109, 0.38969603, 1)
+node_body_reference = NodePath("Body")
+body_colour = Color(0.0062734825, 0.031865284, 0.07004044, 1)
+
+[node name="Body" type="ColorRect" parent="Background_Grid/Visual_Node_Master/@Control@60439"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0062734825, 0.031865284, 0.07004044, 1)
+script = ExtResource("6_pd3w8")
+
+[node name="Node Name" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
+layout_mode = 1
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 269.0
+offset_bottom = 52.0
+mouse_filter = 1
+theme = ExtResource("7_hvfpn")
+bbcode_enabled = true
+text = "Node Name"
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+
+[node name="Header" type="ColorRect" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body"]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+color = Color(0.8081462, 0.3447109, 0.38969603, 1)
+
+[node name="Outputs" type="VBoxContainer" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -20.0
+offset_right = 15.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Node Pin" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("8_iql8b")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+
+[node name="Pin Name2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs/Node Pin"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -17.0
+offset_right = 101.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_hodis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ideqn")
+text = "int"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Pin2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs/Node Pin"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_mrv0r")
+
+[node name="Input Handling2" type="Control" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs/Node Pin" node_paths=PackedStringArray("pin")]
+anchors_preset = 0
+script = ExtResource("13_a1idl")
+pin = NodePath("..")
+
+[node name="Connection Point2" type="Control" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs/Node Pin"]
+anchors_preset = 0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 7.5
+offset_bottom = 7.5
+
+[node name="Node Pin2" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("8_iql8b")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+
+[node name="Pin Name2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs/Node Pin2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -17.0
+offset_right = 101.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_hodis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ideqn")
+text = "int"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Pin2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs/Node Pin2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_mrv0r")
+
+[node name="Input Handling2" type="Control" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs/Node Pin2" node_paths=PackedStringArray("pin")]
+anchors_preset = 0
+script = ExtResource("13_a1idl")
+pin = NodePath("..")
+
+[node name="Connection Point2" type="Control" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Outputs/Node Pin2"]
+anchors_preset = 0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 7.5
+offset_bottom = 7.5
+
+[node name="Inputs" type="VBoxContainer" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -10.0
+offset_right = 24.0
+offset_bottom = 10.0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Node Pin" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("8_iql8b")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+
+[node name="Pin Name2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs/Node Pin"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -17.0
+offset_right = 101.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_hodis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ideqn")
+text = "int"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pin2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs/Node Pin"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_vsx37")
+theme_override_styles/normal = ExtResource("16_6etlr")
+
+[node name="Input Handling2" type="Control" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs/Node Pin" node_paths=PackedStringArray("pin")]
+anchors_preset = 0
+script = ExtResource("13_a1idl")
+pin = NodePath("..")
+
+[node name="Connection Point2" type="Control" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs/Node Pin"]
+anchors_preset = 0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 7.5
+offset_bottom = 7.5
+
+[node name="Node Pin2" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("8_iql8b")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+
+[node name="Pin Name2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs/Node Pin2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -17.0
+offset_right = 101.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_hodis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ideqn")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ideqn")
+text = "int"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pin2" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs/Node Pin2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_vsx37")
+theme_override_styles/normal = ExtResource("16_6etlr")
+
+[node name="Input Handling2" type="Control" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs/Node Pin2" node_paths=PackedStringArray("pin")]
+anchors_preset = 0
+script = ExtResource("13_a1idl")
+pin = NodePath("..")
+
+[node name="Connection Point2" type="Control" parent="Background_Grid/Visual_Node_Master/@Control@60439/Body/Inputs/Node Pin2"]
+anchors_preset = 0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 7.5
+offset_bottom = 7.5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Popup Context Menu" parent="UI" instance=ExtResource("17_fghnc")]
+z_index = 4096
+y_sort_enabled = true
+layout_mode = 0
+offset_left = -613.0
+offset_top = 0.0
+offset_right = -333.0
+offset_bottom = 300.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Menu Background2" type="ColorRect" parent="UI/Popup Context Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.000827202, 0.005980597, 0.016833488, 1)
+
+[node name="Scroller2" type="ScrollContainer" parent="UI/Popup Context Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 36.0
+offset_right = -34.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="Top Bar" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+
+[node name="Background" type="ColorRect" parent="UI/Top Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.050980393, 0.050980393, 0.050980393, 1)
+
+[node name="Button Container" type="HBoxContainer" parent="UI/Top Bar"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -361.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Add Node" type="MenuButton" parent="UI/Top Bar/Button Container"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "+"
+flat = false
+
+[node name="Script Information" type="Control" parent="UI/Top Bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Script Name" type="LineEdit" parent="UI/Top Bar/Script Information"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 19.0
+offset_top = -16.5
+offset_right = 121.0
+offset_bottom = 16.5
+grow_vertical = 2
+theme = SubResource("Theme_jx55a")
+theme_override_fonts/font = ExtResource("20_ywj4b")
+text = "presuming it's fine"
+placeholder_text = "Unnamed"
+max_length = 24
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+backspace_deletes_composite_character_enabled = true
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Separator" type="ColorRect" parent="UI/Top Bar/Script Information/Script Name"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -10.5
+offset_right = 18.0
+offset_bottom = 10.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.54509807, 0.54509807, 0.54509807, 1)
+
+[node name="Save Status" type="Label" parent="UI/Top Bar/Script Information/Script Name/Separator"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -16.5
+offset_right = 120.0
+offset_bottom = 16.5
+grow_vertical = 2
+theme = ExtResource("10_hodis")
+theme_override_font_sizes/font_size = 14
+text = "Unsaved"
+vertical_alignment = 1
+script = ExtResource("21_16y6d")
+
+[connection signal="mouse_entered" from="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body" to="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body" to="Background_Grid/Visual_Node_Master/Visual_Node_duplicate/Body" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Background_Grid/Visual_Node_Master/@Control@60439/Body" to="Background_Grid/Visual_Node_Master/@Control@60439/Body" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Background_Grid/Visual_Node_Master/@Control@60439/Body" to="Background_Grid/Visual_Node_Master/@Control@60439/Body" method="_on_mouse_exited"]
+[connection signal="text_changed" from="UI/Top Bar/Script Information/Script Name" to="." method="set_grid_name"]
+[connection signal="text_submitted" from="UI/Top Bar/Script Information/Script Name" to="." method="set_grid_name"]

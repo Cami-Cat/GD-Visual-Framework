@@ -25,6 +25,7 @@ func _input(event: InputEvent) -> void:
 				is_dragging = true
 		elif event.is_released() : 
 			is_dragging = false
+			self.get_parent().action_ran.emit("Node Moved", self.get_parent(), global_position)
 		return
 
 func _on_mouse_entered() -> void:

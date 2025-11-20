@@ -1,11 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dedwgcnrjc1xl"]
+[gd_scene load_steps=3 format=3 uid="uid://dedwgcnrjc1xl"]
 
 [ext_resource type="Script" uid="uid://cjbcona8po87k" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Connection.gd" id="1_74qjd"]
+
+[sub_resource type="Curve" id="Curve_74qjd"]
+_data = [Vector2(0.11349692, 0.252142), 0.0, 0.0, 0, 0, Vector2(0.78220856, 0.7374542), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Node Connection" type="Line2D"]
 show_behind_parent = true
 z_index = -1
 width = 2.0
+width_curve = SubResource("Curve_74qjd")
 joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2

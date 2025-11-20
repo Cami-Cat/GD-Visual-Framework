@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://chpavs1bdt7qb" path="res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres" id="3_ffjnk"]
 [ext_resource type="PackedScene" uid="uid://ddeer067x1n44" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/node_pin.tscn" id="4_fexpj"]
 
-[node name="Visual_Node" type="Control" node_paths=PackedStringArray("node_name_reference", "node_header_reference", "node_body_reference", "outputs")]
+[node name="Visual_Node" type="Control" node_paths=PackedStringArray("node_name_reference", "node_header_reference", "node_body_reference")]
 y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 0
@@ -21,7 +21,6 @@ node_header_reference = NodePath("Body/Header")
 header_colour = Color(0.8081462, 0.3447109, 0.38969603, 1)
 node_body_reference = NodePath("Body")
 body_colour = Color(0.0062734825, 0.031865284, 0.07004044, 1)
-outputs = NodePath("Body/Outputs")
 
 [node name="Body" type="ColorRect" parent="."]
 z_index = 1
@@ -51,68 +50,6 @@ scroll_active = false
 autowrap_mode = 0
 autowrap_trim_flags = 0
 
-[node name="Outputs" type="VBoxContainer" parent="Body"]
-z_index = 1
-z_as_relative = false
-y_sort_enabled = true
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_bottom = 48.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/separation = 24
-
-[node name="Node Pin" parent="Body/Outputs" instance=ExtResource("4_fexpj")]
-layout_mode = 2
-
-[node name="Node Pin2" parent="Body/Outputs" instance=ExtResource("4_fexpj")]
-modulate = Color(0, 0.7348626, 0, 1)
-layout_mode = 2
-pin_type = 3
-
-[node name="Node Pin3" parent="Body/Outputs" instance=ExtResource("4_fexpj")]
-modulate = Color(1, 0.22153813, 0.40367222, 1)
-layout_mode = 2
-pin_type = 24
-
-[node name="Inputs" type="VBoxContainer" parent="Body"]
-z_index = 1
-z_as_relative = false
-y_sort_enabled = true
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -450.0
-offset_right = -437.0
-offset_bottom = 48.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/separation = 24
-
-[node name="Node Pin" parent="Body/Inputs" instance=ExtResource("4_fexpj")]
-layout_mode = 2
-connection_type = 0
-
-[node name="Node Pin2" parent="Body/Inputs" instance=ExtResource("4_fexpj")]
-modulate = Color(0, 0.7348626, 0, 1)
-layout_mode = 2
-connection_type = 0
-pin_type = 3
-
-[node name="Node Pin3" parent="Body/Inputs" instance=ExtResource("4_fexpj")]
-modulate = Color(1, 0.22153813, 0.40367222, 1)
-layout_mode = 2
-connection_type = 0
-pin_type = 24
-
 [node name="Header" type="ColorRect" parent="Body"]
 z_index = 1
 z_as_relative = false
@@ -122,6 +59,51 @@ anchor_right = 1.0
 offset_bottom = 5.0
 grow_horizontal = 2
 color = Color(0.8081462, 0.3447109, 0.38969603, 1)
+
+[node name="Outputs" type="VBoxContainer" parent="Body"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -20.0
+offset_right = 15.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Node Pin" parent="Body/Outputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("4_fexpj")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+connection_type = 1
+
+[node name="Node Pin2" parent="Body/Outputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("4_fexpj")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+connection_type = 1
+
+[node name="Inputs" type="VBoxContainer" parent="Body"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -10.0
+offset_right = 24.0
+offset_bottom = 10.0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Node Pin" parent="Body/Inputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("4_fexpj")]
+layout_mode = 2
+node_owner = NodePath("../../..")
+
+[node name="Node Pin2" parent="Body/Inputs" node_paths=PackedStringArray("node_owner") instance=ExtResource("4_fexpj")]
+layout_mode = 2
+node_owner = NodePath("../../..")
 
 [connection signal="mouse_entered" from="Body" to="Body" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Body" to="Body" method="_on_mouse_exited"]

@@ -1,2 +1,8 @@
-Control
+VBoxContainer
 Node
+Node_Pin
+Label
+ColorRect
+Control
+LineEdit
+TextEdit

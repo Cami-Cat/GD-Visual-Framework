@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1noyba2q2fqr"]
+[gd_scene load_steps=4 format=3 uid="uid://d1noyba2q2fqr"]
 
 [ext_resource type="Script" uid="uid://5v4rf47cdyvm" path="res://Examples/test_scene.gd" id="1_1mnn2"]
+[ext_resource type="PackedScene" uid="uid://da7hdwrkqeq1v" path="res://addons/visual_framework/Grids/Overwrite.tscn" id="2_2l5hv"]
+[ext_resource type="PackedScene" uid="uid://goqvnjemdtao" path="res://addons/visual_framework/Grids/Give_it_a_name.tscn" id="3_e3fhu"]
 
 [node name="Test Scene" type="Control"]
 layout_mode = 3
@@ -10,3 +12,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1mnn2")
+
+[node name="Visual Editor Main" parent="." instance=ExtResource("2_2l5hv")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="Give_it_a_name" parent="." instance=ExtResource("3_e3fhu")]
+layout_mode = 0
+anchors_preset = 0

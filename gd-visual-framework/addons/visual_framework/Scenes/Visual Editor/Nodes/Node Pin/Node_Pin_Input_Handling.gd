@@ -14,7 +14,7 @@ signal clicked()
 var mouse_over  : bool = false
 var is_dragging : bool = false
 
-var lines : Array[Node_Connection] = []
+@export var lines : Array[Node_Connection] = []
 var temp_line : Node_Connection = null
 
 func _process(_delta: float) -> void:
@@ -44,6 +44,7 @@ func _clear_connections() -> void:
 			if line == null: continue
 			line.queue_free()
 		lines.clear()
+		pin.node_owner.action_ran.emit("Disconnected Pin", pin, pin.pin_connections)
 		for connection : Node_Pin in pin.pin_connections.keys():
 			connection.pin_connections[pin].queue_free()
 			connection.pin_connections.erase(pin)
@@ -55,7 +56,8 @@ func _click_event() -> void:
 	if !is_dragging:
 		clicked.emit()
 		temp_line = _create_line()
-		get_parent().add_child(temp_line)
+		pin.add_child(temp_line)
+		temp_line.set_owner(pin.node_owner.owner)
 		is_dragging = true
 
 ## Create a new Node Connection line and create two points. Then define important initial variables for controlling positions thereeafter.
@@ -111,11 +113,16 @@ func _lock_connection() -> void:
 	temp_line.locked = true
 	## Store the lines in an accessible array to be cleared when right clicked.
 	lines.append(temp_line)
+	var index = lines.find(temp_line)
+	print(lines[index].owner)
+	print(pin.get_children())
+	#temp_line = null
 
 	## Store the connection to this node with another node to access it later.
-	pin.pin_connections[VisualServer.mouse_over_pin] = temp_line
-	VisualServer.mouse_over_pin.pin_connections[pin] = temp_line
-	temp_line = null
+	pin.pin_connections[VisualServer.mouse_over_pin] = lines[index]
+	VisualServer.mouse_over_pin.pin_connections[pin] = lines[index]
+	print(pin.pin_connections)
+	pin.node_owner.action_ran.emit("Connected Pin", pin, VisualServer.mouse_over_pin)
 
 func _drag() -> void:
 	if temp_line == null : return

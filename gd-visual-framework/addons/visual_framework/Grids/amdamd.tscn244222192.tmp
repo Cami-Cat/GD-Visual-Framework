@@ -1,0 +1,40 @@
+[gd_scene load_steps=27 format=3 uid="uid://reae3df8ko8u"]
+
+[ext_resource type="Script" uid="uid://csgo0dou23gi7" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd" id="1_a1hoc"]
+[ext_resource type="Shader" uid="uid://b2ulsvyer8lqg" path="res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader" id="2_2yb7f"]
+[ext_resource type="Script" uid="uid://cetm6xcw5hyeg" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd" id="3_uwr1h"]
+[ext_resource type="Script" uid="uid://ddv5jqm0vid3i" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd" id="4_vhl43"]
+[ext_resource type="PackedScene" uid="uid://dt50yts386dv4" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn" id="5_rv3ia"]
+[ext_resource type="Script" uid="uid://5hla3c7o6a37" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node.gd" id="6_6w6i4"]
+[ext_resource type="Script" uid="uid://bw2ewh6ocqkc2" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node_Body.gd" id="6_vhl43"]
+[ext_resource type="PackedScene" uid="uid://cg80bqiec73dj" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn" id="7_hvar5"]
+[ext_resource type="Theme" uid="uid://chpavs1bdt7qb" path="res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres" id="7_rv3ia"]
+[ext_resource type="PackedScene" uid="uid://ddeer067x1n44" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/node_pin.tscn" id="8_6w6i4"]
+[ext_resource type="Script" uid="uid://cmpdcp7g6ameo" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.gd" id="8_gtxrf"]
+[ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="9_f28fw"]
+[ext_resource type="Theme" uid="uid://dnjeaxs7vpn7l" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output.tres" id="10_hvar5"]
+[ext_resource type="Script" uid="uid://c4e6dd40o0cwu" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin.gd" id="10_rpudc"]
+[ext_resource type="Script" uid="uid://ebpeg8ocqdg0" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UISearch_Bar.gd" id="10_xxtsw"]
+[ext_resource type="Script" uid="uid://cc7nmrlo05cuv" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin_Input_Handling.gd" id="11_gtxrf"]
+[ext_resource type="FontFile" uid="uid://b160potll55mi" path="res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf" id="11_rpudc"]
+[ext_resource type="Script" uid="uid://cjbcona8po87k" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Connection.gd" id="11_wllta"]
+[ext_resource type="Theme" uid="uid://c7edf5xey84k" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input.tres" id="12_f28fw"]
+[ext_resource type="Script" uid="uid://c5b54djou026s" path="res://addons/visual_framework/Scenes/Visual Editor/Graph/Save_Status.gd" id="12_wllta"]
+[ext_resource type="StyleBox" uid="uid://dmtbgegaicsgq" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output_Filled.tres" id="14_3ub7m"]
+[ext_resource type="StyleBox" uid="uid://4vgde71cokm4" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input_Filled.tres" id="17_6i6jh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kgpe"]
+shader = ExtResource("2_2yb7f")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.05197101, 0.051970944, 0.05197095, 1)
+shader_parameter/dot_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+shader_parameter/resolution = Vector2(5000, 5000)
+shader_parameter/offset = Vector2(0, 33.78)
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgk21"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right =

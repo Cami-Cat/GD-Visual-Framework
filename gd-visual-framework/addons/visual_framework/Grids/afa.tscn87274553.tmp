@@ -1,0 +1,175 @@
+[gd_scene load_steps=28 format=3 uid="uid://bpjqppuu1d0uw"]
+
+[ext_resource type="Script" uid="uid://csgo0dou23gi7" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Editor_Main.gd" id="1_e45dv"]
+[ext_resource type="Shader" uid="uid://b2ulsvyer8lqg" path="res://addons/visual_framework/Scripts/Shaders/Background_Grid.gdshader" id="2_0r0b1"]
+[ext_resource type="Script" uid="uid://cetm6xcw5hyeg" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Background_Grid.gd" id="3_tp5ay"]
+[ext_resource type="Script" uid="uid://ddv5jqm0vid3i" path="res://addons/visual_framework/Scripts/Visual Editor/Graph/Visual_Node_Master.gd" id="4_ah1n2"]
+[ext_resource type="PackedScene" uid="uid://dt50yts386dv4" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node.tscn" id="5_iboq2"]
+[ext_resource type="Script" uid="uid://5hla3c7o6a37" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node.gd" id="6_77x0i"]
+[ext_resource type="Script" uid="uid://bw2ewh6ocqkc2" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Visual_Node_Body.gd" id="7_mj061"]
+[ext_resource type="Theme" uid="uid://chpavs1bdt7qb" path="res://addons/visual_framework/Assets/Themes/Text/THeader_Extra_Bold.tres" id="8_bh58s"]
+[ext_resource type="PackedScene" uid="uid://ddeer067x1n44" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/node_pin.tscn" id="9_68hbq"]
+[ext_resource type="Script" uid="uid://c4e6dd40o0cwu" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin.gd" id="10_sgt34"]
+[ext_resource type="Script" uid="uid://cjbcona8po87k" path="res://addons/visual_framework/Scripts/Visual Editor/Nodes/Node_Connection.gd" id="11_5e8ww"]
+[ext_resource type="Theme" uid="uid://ra68a62oxvi1" path="res://addons/visual_framework/Assets/Themes/Text/TBody_Light.tres" id="12_7bpbm"]
+[ext_resource type="Theme" uid="uid://dnjeaxs7vpn7l" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output.tres" id="13_0py4m"]
+[ext_resource type="StyleBox" uid="uid://dmtbgegaicsgq" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Output_Filled.tres" id="14_fkobo"]
+[ext_resource type="Script" uid="uid://cc7nmrlo05cuv" path="res://addons/visual_framework/Scenes/Visual Editor/Nodes/Node Pin/Node_Pin_Input_Handling.gd" id="15_ktc0a"]
+[ext_resource type="Theme" uid="uid://c7edf5xey84k" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input.tres" id="16_kymgs"]
+[ext_resource type="StyleBox" uid="uid://4vgde71cokm4" path="res://addons/visual_framework/Assets/Themes/Visuals/Node Pins/Node_Pin_Input_Filled.tres" id="17_tkog4"]
+[ext_resource type="PackedScene" uid="uid://cg80bqiec73dj" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.tscn" id="18_tea13"]
+[ext_resource type="Script" uid="uid://cmpdcp7g6ameo" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UIPopup_Context_Menu.gd" id="19_dkkc4"]
+[ext_resource type="Script" uid="uid://ebpeg8ocqdg0" path="res://addons/visual_framework/Scenes/Visual Editor/UI/UISearch_Bar.gd" id="20_uh8up"]
+[ext_resource type="FontFile" uid="uid://b160potll55mi" path="res://addons/visual_framework/Assets/Fonts/Jetbrains Mono Collection/JetBrainsMono-Light.ttf" id="21_x03go"]
+[ext_resource type="Script" uid="uid://c5b54djou026s" path="res://addons/visual_framework/Scenes/Visual Editor/Graph/Save_Status.gd" id="22_rwwi8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kgpe"]
+shader = ExtResource("2_0r0b1")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.05197101, 0.051970944, 0.05197095, 1)
+shader_parameter/dot_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+shader_parameter/resolution = Vector2(5000, 5000)
+shader_parameter/offset = Vector2(0, 33.78)
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgk21"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4inbe"]
+
+[sub_resource type="Theme" id="Theme_jx55a"]
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("21_x03go")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_4inbe")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_4inbe")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_4inbe")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnb6s"]
+content_margin_left = 9.0
+content_margin_top = 9.0
+content_margin_right = 9.0
+content_margin_bottom = 9.0
+bg_color = Color(0.101961, 0.105882, 0.14902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.05607855, 0.058235098, 0.081961, 1)
+corner_detail = 3
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 4
+anti_aliasing = false
+
+[node name="afa" type="Control" node_paths=PackedStringArray("grid", "visual_node_master")]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_e45dv")
+grid = NodePath("Background_Grid")
+zoom_step = 0.02
+visual_node_master = NodePath("Background_Grid/Visual_Node_Master")
+
+[node name="Background_Grid" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2kgpe")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_tp5ay")
+
+[node name="Visual_Node_Master" type="Control" parent="Background_Grid"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 388.0
+offset_top = 187.0
+offset_right = 388.0
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_ah1n2")
+
+[node name="Visual_Node" type="Control" parent="Background_Grid/Visual_Node_Master" node_paths=PackedStringArray("node_name_reference", "node_header_reference", "node_body_reference") instance=ExtResource("5_iboq2")]
+y_sort_enabled = true
+anchors_preset = 0
+offset_left = -119.0
+offset_top = 6.0
+offset_right = 331.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_77x0i")
+node_size = Vector2(450, 150)
+node_name_reference = NodePath("Body/Node Name")
+node_header_reference = NodePath("Body/Header")
+header_colour = Color(0.8081462, 0.3447109, 0.38969603, 1)
+node_body_reference = NodePath("Body")
+body_colour = Color(0.0062734825, 0.031865284, 0.07004044, 1)
+
+[node name="Body" type="ColorRect" parent="Background_Grid/Visual_Node_Master/Visual_Node"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0062734825, 0.031865284, 0.07004044, 1)
+script = ExtResource("7_mj061")
+
+[node name="Node Name" type="RichTextLabel" parent="Background_Grid/Visual_Node_Master/Visual_Node/Body"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
+layout_mode = 1
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 269.0
+offset_bottom = 52.0
+mouse_filter = 1
+theme = ExtResource("8_bh58s")
+bbcode_enabled = true
+text = "Node Name"
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+
+[node name="Header" type="ColorRect" parent="Background_Grid/Visual_Node_Master/Visual_Node/Body"]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+color = Color(0.8081462, 0.3447109, 0.38969603, 1)
+
+[node name="Outputs" type="VBoxContainer" parent="Background_Grid/Visual_Node_Master/Visual_Node/Body"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -20.0
+offset_right = 15.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Node Pin" parent="Background_Grid/Visual_Node_Master/Visual_Node/Body/Outputs" node_paths=PackedStringArray("node_owner", "pin", "pin_name", "pin_connection_point") instance=ExtResource("9_68hbq")]
+modulat
